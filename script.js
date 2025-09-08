@@ -1,58 +1,91 @@
 // script.js
 
-// Smooth scrolling for anchor links (optional, CSS scroll-behavior: smooth is often enough)
+// Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
-// Carousel functionality
+// New Carousel functionality (simplified)
 document.addEventListener('DOMContentLoaded', () => {
-    const carouselTrack = document.querySelector('.carousel-track');
-    const slides = Array.from(carouselTrack.children);
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    const slides = Array.from(carouselWrapper.children);
     const nextButton = document.querySelector('.carousel-button.next');
     const prevButton = document.querySelector('.carousel-button.prev');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    const carouselContainer = document.querySelector('.carousel-container'); // Get the main container
 
-    let slideWidth = slides[0].getBoundingClientRect().width;
+    if (!carouselWrapper || slides.length === 0) return;
+
     let currentSlideIndex = 0;
+    let autoPlayInterval;
 
-    // Set up slide positions
-    const setSlidePosition = (slide, index) => {
-        slide.style.left = slideWidth * index + 'px';
+    // Create navigation dots
+    slides.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.classList.add('carousel-dot');
+        if (index === 0) dot.classList.add('active-dot');
+        dot.addEventListener('click', () => {
+            clearInterval(autoPlayInterval);
+            showSlide(index);
+            startAutoPlay();
+        });
+        dotsContainer.appendChild(dot);
+    });
+    const dots = Array.from(dotsContainer.children);
+
+    // Function to show a specific slide
+    const showSlide = (index) => {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active-slide');
+            slide.style.opacity = '0'; // Hide all slides
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.remove('active-dot');
+        });
+
+        slides[index].classList.add('active-slide');
+        slides[index].style.opacity = '1'; // Show the active slide
+
+        dots[index].classList.add('active-dot');
+        currentSlideIndex = index;
     };
-    slides.forEach(setSlidePosition);
 
-    const moveToSlide = (track, currentSlide, targetSlide) => {
-        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-        currentSlide.classList.remove('current-slide');
-        targetSlide.classList.add('current-slide');
+    // Auto-play functionality
+    const startAutoPlay = () => {
+        autoPlayInterval = setInterval(() => {
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            showSlide(currentSlideIndex);
+        }, 5000); // Change slide every 5 seconds
     };
 
-    // When I click next, move slides to the left
+    // Event listeners for buttons
     nextButton.addEventListener('click', () => {
+        clearInterval(autoPlayInterval);
         currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-        moveToSlide(carouselTrack, slides[currentSlideIndex === 0 ? slides.length - 1 : currentSlideIndex - 1], slides[currentSlideIndex]);
+        showSlide(currentSlideIndex);
+        startAutoPlay();
     });
 
-    // When I click prev, move slides to the right
     prevButton.addEventListener('click', () => {
+        clearInterval(autoPlayInterval);
         currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
-        moveToSlide(carouselTrack, slides[currentSlideIndex === slides.length - 1 ? 0 : currentSlideIndex + 1], slides[currentSlideIndex]);
+        showSlide(currentSlideIndex);
+        startAutoPlay();
     });
 
-    // Optional: Auto-play carousel
-    setInterval(() => {
-        nextButton.click();
-    }, 5000); // Change slide every 5 seconds
+    // Initialize carousel on load
+    showSlide(0);
+    startAutoPlay();
 
-    // Update slideWidth on resize
-    window.addEventListener('resize', () => {
-        slideWidth = slides[0].getBoundingClientRect().width;
-        slides.forEach(setSlidePosition);
-        carouselTrack.style.transform = 'translateX(-' + slides[currentSlideIndex].style.left + ')';
-    });
+    // No need for height adjustments on resize anymore as container has min-height
 });

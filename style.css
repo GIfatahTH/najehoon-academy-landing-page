@@ -69,33 +69,29 @@ section {
 .hero {
     background: linear-gradient(135deg, #007bff 0%, #28a745 100%);
     /* Blue to Green gradient */
-    color: #fff;
-    /* Default text color for hero section is white */
+    color: #FFFFFF;
+    /* Default text color for hero section is WHITE */
     text-align: center;
     padding: 60px 20px 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 60vh;
+    min-height: 80vh;
     position: relative;
 }
 
-.hero-inner-content {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.top-bar {
+    /* Controls the very top section for logo */
     width: 100%;
-}
-
-.header-branding {
+    max-width: 1200px;
+    /* Aligns with main content max-width */
+    margin: 0 auto;
+    padding: 20px;
     display: flex;
     justify-content: center;
-    width: 100%;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    /* Center the logo horizontally */
+    align-items: center;
 }
 
 .logo img {
@@ -104,44 +100,94 @@ section {
     border-radius: 5px;
 }
 
-.hero-main-content {
+.hero-content {
+    /* Container for H1, subtitle, app image and CTA in hero */
     width: 100%;
+    max-width: 900px;
+    /* Constrain content width */
     text-align: center;
+    padding-top: 20px;
+    /* Add some space below the logo/top-bar */
 }
 
-/* *** التعديلات الجوهرية هنا لضمان وضوح النص *** */
 .hero-content h1 {
     color: #FFFFFF !important;
-    /* فرض اللون الأبيض لضمان التباين */
     margin-bottom: 0.5em;
     font-size: 3em;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-    /* ظل أقوى وأغمق */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
 }
 
 .hero-content .subtitle {
     color: #FFFFFF !important;
-    /* فرض اللون الأبيض لضمان التباين */
     font-size: 1.8em;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-    /* ظل أقوى وأغمق */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    margin-bottom: 0;
+    /* *** التعديل هنا: إزالة margin-bottom لتقليل المسافة *** */
 }
 
-/* أيضا للنصوص الأخرى في قسم الهيرو التي قد تحتاج للوضوح */
+/* *** New style for the Hero app showcase image *** */
+.hero-app-showcase {
+    /* *** التعديل هنا: تقليل الـ margin بشكل كبير *** */
+    margin: 20px auto 30px;
+    /* Centered with adjusted top/bottom margin */
+    max-width: 800px;
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.hero-app-showcase img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
 .hero-free-trial-text,
 .hero-guarantee-text {
     font-size: 1.2em;
     color: #FFFFFF !important;
-    /* فرض اللون الأبيض */
     margin-bottom: 5px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-    /* ظل أقوى */
 }
 
 /* *** نهاية التعديلات الجوهرية هنا *** */
+
+
+/* Hero CTA Download area */
+.hero-cta-download {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+    /* *** التعديل هنا: إزالة margin-top الزائد *** */
+}
+
+.hero-cta-download .cta-button {
+    margin-bottom: 15px;
+}
+
+.app-stores-hero {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.app-stores-hero img {
+    max-width: 150px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.app-stores-hero img:hover {
+    transform: scale(1.05);
+}
+
 
 
 /* CTA Button Styles */
@@ -161,11 +207,7 @@ section {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.cta-button:hover {
-    background-color: #e0a800;
-    /* Darker yellow on hover */
-    transform: translateY(-2px);
-}
+
 
 .primary-cta {
     background-color: #ffc107;
@@ -294,22 +336,50 @@ section {
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    padding: 20px 0;
+    padding-bottom: 50px;
+    /* *** التعديل هنا: تحديد ارتفاع ثابت للحاوية الرئيسية لضمان عدم القفز *** */
+    min-height: 550px;
+    /* Adjust this value based on your tallest slide's content + padding */
+    display: flex;
+    /* Make it a flex container */
+    align-items: center;
+    /* Center slides vertically within container */
+    justify-content: center;
+    /* Center slides horizontally */
 }
 
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+.carousel-wrapper {
+    position: relative;
+    /* *** التعديل هنا: إزالة min-height و height: auto; ليعتمد على الشرائح *** */
+    width: 100%;
+    height: 100%;
+    /* Make wrapper take full height of container */
 }
 
 .carousel-slide {
-    min-width: 100%;
-    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Make slide take full height of wrapper */
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    background-color: #fff;
+    box-sizing: border-box;
+    /* Include padding in height */
+}
+
+.carousel-slide.active-slide {
+    opacity: 1;
+    z-index: 1;
+    /* *** التعديل هنا: إزالة position: relative; لا تبقى absolute *** */
 }
 
 .carousel-slide img {
@@ -318,7 +388,6 @@ section {
     height: auto;
     max-height: 450px;
     object-fit: contain;
-
     border-radius: 8px;
     margin-bottom: 15px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -335,7 +404,7 @@ section {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     border: none;
     padding: 10px 15px;
@@ -347,7 +416,7 @@ section {
 }
 
 .carousel-button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
 .carousel-button.prev {
@@ -356,6 +425,67 @@ section {
 
 .carousel-button.next {
     left: 10px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-dot.active-dot {
+    background-color: #007bff;
+    transform: scale(1.2);
+}
+
+/* Responsive adjustments for carousel */
+@media (max-width: 768px) {
+    .carousel-container {
+        padding: 10px 0 40px;
+        min-height: 400px;
+        /* Adjust min-height for mobile carousel */
+    }
+
+    .carousel-wrapper {
+        height: 100%;
+        /* Ensure wrapper takes full height on mobile too */
+    }
+
+    .carousel-slide {
+        padding: 0 10px;
+    }
+
+    .carousel-slide img {
+        max-width: 100%;
+        max-height: 250px;
+        /* Adjust image height for mobile */
+    }
+
+    .carousel-slide p {
+        font-size: 1em;
+    }
+
+    .carousel-button {
+        padding: 8px 12px;
+        font-size: 1.2em;
+    }
+
+    .carousel-dots {
+        bottom: 10px;
+    }
 }
 
 
@@ -400,19 +530,16 @@ section {
 
 .cta-subtitle {
     color: #FFFFFF !important;
-    /* *** التعديل هنا: فرض اللون الأبيض *** */
     font-size: 1.8em;
     font-weight: 400;
     margin-bottom: 30px;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-    /* ظل أقوى وأغمق */
 }
 
 .cta-offer {
     font-size: 2em;
     font-weight: 700;
     color: #ffc107;
-    /* Highlight with yellow */
     margin: 20px 0 10px;
 }
 
@@ -427,19 +554,15 @@ section {
 .cta-guarantee {
     font-size: 1.2em;
     color: #FFFFFF !important;
-    /* *** التعديل هنا: فرض اللون الأبيض *** */
     margin-bottom: 30px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-    /* ظل أقوى */
 }
 
 .final-cta-text {
     font-size: 1.3em;
     margin-top: 30px;
     color: #FFFFFF !important;
-    /* *** التعديل هنا: فرض اللون الأبيض *** */
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-    /* ظل أقوى وأغمق */
 }
 
 /* Download Links Section (bottom of the page) */
@@ -587,9 +710,8 @@ footer a:hover {
     }
 
     /* Adjusted header-branding for smaller screens */
-    .header-branding {
-        justify-content: center;
-        padding-bottom: 10px;
+    .top-bar {
+        padding: 15px;
     }
 
     .logo img {
@@ -602,6 +724,12 @@ footer a:hover {
 
     .hero-content .subtitle {
         font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .hero-app-showcase {
+        margin: 30px auto;
+        max-width: 95%;
     }
 
     .problem-grid,
