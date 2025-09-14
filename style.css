@@ -1,0 +1,782 @@
+/* Basic Reset & Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f7f6;
+    /* Light grey background */
+    direction: rtl;
+    /* Right-to-left for Arabic */
+    text-align: right;
+    /* Align text to the right */
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    color: #007bff;
+    /* Primary blue for headings */
+    margin-bottom: 0.8em;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.8em;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2.2em;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 1.5em;
+    color: #28a745;
+    /* Green for section titles */
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #007bff;
+}
+
+p {
+    margin-bottom: 1em;
+    font-size: 1.1em;
+}
+
+.subtitle {
+    font-size: 1.6em;
+    font-weight: 400;
+    color: #555;
+    margin-bottom: 1.5em;
+}
+
+/* Layout - Reusable container for sections */
+section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header & Logo */
+.hero {
+    background: linear-gradient(135deg, #007bff 0%, #28a745 100%);
+    /* Blue to Green gradient */
+    color: #FFFFFF;
+    /* Default text color for hero section is WHITE */
+    text-align: center;
+    padding: 60px 20px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    position: relative;
+}
+
+.top-bar {
+    /* Controls the very top section for logo */
+    width: 100%;
+    max-width: 1200px;
+    /* Aligns with main content max-width */
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    /* Center the logo horizontally */
+    align-items: center;
+}
+
+.logo img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.hero-content {
+    /* Container for H1, subtitle, app image and CTA in hero */
+    width: 100%;
+    max-width: 900px;
+    /* Constrain content width */
+    text-align: center;
+    padding-top: 20px;
+    /* Add some space below the logo/top-bar */
+}
+
+.hero-content h1 {
+    color: #FFFFFF !important;
+    margin-bottom: 0.5em;
+    font-size: 3em;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content .subtitle {
+    color: #FFFFFF !important;
+    font-size: 1.8em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    margin-bottom: 0;
+    /* *** التعديل هنا: إزالة margin-bottom لتقليل المسافة *** */
+}
+
+/* *** New style for the Hero app showcase image *** */
+.hero-app-showcase {
+    /* *** التعديل هنا: تقليل الـ margin بشكل كبير *** */
+    margin: 20px auto 30px;
+    /* Centered with adjusted top/bottom margin */
+    max-width: 800px;
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.hero-app-showcase img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.hero-free-trial-text,
+.hero-guarantee-text {
+    font-size: 1.2em;
+    color: #FFFFFF !important;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* *** نهاية التعديلات الجوهرية هنا *** */
+
+
+/* Hero CTA Download area */
+.hero-cta-download {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+    /* *** التعديل هنا: إزالة margin-top الزائد *** */
+}
+
+.hero-cta-download .cta-button {
+    margin-bottom: 15px;
+}
+
+.app-stores-hero {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.app-stores-hero img {
+    max-width: 150px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.app-stores-hero img:hover {
+    transform: scale(1.05);
+}
+
+
+
+/* CTA Button Styles */
+.cta-button {
+    display: inline-block;
+    background-color: #ffc107;
+    /* Bright yellow */
+    color: #333;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.primary-cta {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.secondary-cta {
+    background-color: #fff;
+    color: #007bff;
+    border: 2px solid #007bff;
+}
+
+.secondary-cta:hover {
+    background-color: #f0f0f0;
+    color: #0056b3;
+}
+
+/* Value Proposition Section */
+.value-proposition-section {
+    background-color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.value-proposition-section h2 {
+    color: #007bff;
+}
+
+.value-proposition-section .intro-paragraph {
+    font-size: 1.3em;
+    max-width: 900px;
+    margin: 20px auto 0;
+    color: #444;
+}
+
+
+/* Problem & Solution Details Section */
+.problem-solution-details {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+.problem-solution-card {
+    display: flex;
+    /* flex-direction: row-reverse; */
+    /* Problem on right, Solution on left for desktop */
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.problem-box,
+.solution-box {
+    padding: 30px;
+    flex: 1;
+}
+
+.problem-box {
+    background-color: #ffe0e0;
+    color: #333;
+    border-left: 1px solid #ffb3b3;
+}
+
+.problem-box h3 {
+    color: #dc3545;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+}
+
+.problem-box p {
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+.solution-box {
+    background-color: #e0ffe0;
+    color: #333;
+}
+
+.solution-box h3 {
+    color: #28a745;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+}
+
+.solution-box ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.solution-box ul li {
+    position: relative;
+    padding-right: 30px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+.list-icon {
+    position: absolute;
+    right: 0;
+    color: #28a745;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+
+/* App Carousel Section */
+.app-carousel-section {
+    background-color: #f0f0f0;
+    padding: 60px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 900px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    padding: 20px 0;
+    padding-bottom: 50px;
+    /* *** التعديل هنا: تحديد ارتفاع ثابت للحاوية الرئيسية لضمان عدم القفز *** */
+    min-height: 550px;
+    /* Adjust this value based on your tallest slide's content + padding */
+    display: flex;
+    /* Make it a flex container */
+    align-items: center;
+    /* Center slides vertically within container */
+    justify-content: center;
+    /* Center slides horizontally */
+}
+
+.carousel-wrapper {
+    position: relative;
+    /* *** التعديل هنا: إزالة min-height و height: auto; ليعتمد على الشرائح *** */
+    width: 100%;
+    height: 100%;
+    /* Make wrapper take full height of container */
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Make slide take full height of wrapper */
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    /* Include padding in height */
+}
+
+.carousel-slide.active-slide {
+    opacity: 1;
+    z-index: 1;
+    /* *** التعديل هنا: إزالة position: relative; لا تبقى absolute *** */
+}
+
+.carousel-slide img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    max-height: 450px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-slide p {
+    font-size: 1.2em;
+    color: #555;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.5em;
+    border-radius: 50%;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.carousel-button.prev {
+    right: 10px;
+}
+
+.carousel-button.next {
+    left: 10px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-dot.active-dot {
+    background-color: #007bff;
+    transform: scale(1.2);
+}
+
+/* Responsive adjustments for carousel */
+@media (max-width: 768px) {
+    .carousel-container {
+        padding: 10px 0 40px;
+        min-height: 400px;
+        /* Adjust min-height for mobile carousel */
+    }
+
+    .carousel-wrapper {
+        height: 100%;
+        /* Ensure wrapper takes full height on mobile too */
+    }
+
+    .carousel-slide {
+        padding: 0 10px;
+    }
+
+    .carousel-slide img {
+        max-width: 100%;
+        max-height: 250px;
+        /* Adjust image height for mobile */
+    }
+
+    .carousel-slide p {
+        font-size: 1em;
+    }
+
+    .carousel-button {
+        padding: 8px 12px;
+        font-size: 1.2em;
+    }
+
+    .carousel-dots {
+        bottom: 10px;
+    }
+}
+
+
+/* Testimonials Section */
+.testimonials-section {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.testimonial-card {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin: 20px auto;
+    max-width: 700px;
+    font-style: italic;
+    font-size: 1.1em;
+}
+
+.testimonial-card .author {
+    font-weight: 700;
+    margin-top: 15px;
+    font-style: normal;
+    color: #007bff;
+}
+
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(45deg, #28a745 0%, #007bff 100%);
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.cta-section h2 {
+    color: #fff;
+    font-size: 2.5em;
+    margin-bottom: 0.8em;
+}
+
+.cta-subtitle {
+    color: #FFFFFF !important;
+    font-size: 1.8em;
+    font-weight: 400;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cta-offer {
+    font-size: 2em;
+    font-weight: 700;
+    color: #ffc107;
+    margin: 20px 0 10px;
+}
+
+.cta-offer-text {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #ffc107;
+    margin: 20px 0 10px;
+}
+
+
+.cta-guarantee {
+    font-size: 1.2em;
+    color: #FFFFFF !important;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.final-cta-text {
+    font-size: 1.3em;
+    margin-top: 30px;
+    color: #FFFFFF !important;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Download Links Section (bottom of the page) */
+.download-links {
+    text-align: center;
+    background-color: #fff;
+    padding: 40px 20px;
+    border-top: 1px solid #eee;
+}
+
+.download-links h2 {
+    color: #007bff;
+    margin-bottom: 30px;
+}
+
+.app-stores {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.app-stores img {
+    max-width: 180px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.app-stores img:hover {
+    transform: scale(1.05);
+}
+
+/* Specific styling for CTA app store links */
+.cta-app-stores {
+    margin-top: 20px;
+}
+
+.cta-app-stores img {
+    max-width: 160px;
+}
+
+
+/* Contact Form Section */
+.contact-form-section {
+    background-color: #f8f9fa;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1em;
+    direction: rtl;
+    text-align: right;
+}
+
+.contact-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.contact-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 700;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+
+.form-note {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+}
+
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: #ffc107;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .subtitle {
+        font-size: 1.3em;
+    }
+
+    .cta-button {
+        font-size: 1em;
+        padding: 12px 25px;
+    }
+
+    .hero {
+        min-height: 50vh;
+        padding: 80px 15px;
+    }
+
+    /* Adjusted header-branding for smaller screens */
+    .top-bar {
+        padding: 15px;
+    }
+
+    .logo img {
+        max-width: 120px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-content .subtitle {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .hero-app-showcase {
+        margin: 30px auto;
+        max-width: 95%;
+    }
+
+    .problem-grid,
+    .solution-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonials-section h2 {
+        font-size: 1.5em;
+    }
+
+    .cta-section h2 {
+        font-size: 2em;
+    }
+
+    .cta-offer-text {
+        font-size: 1.2em;
+    }
+
+    .carousel-button {
+        padding: 8px 12px;
+        font-size: 1.2em;
+    }
+
+    .carousel-slide p {
+        font-size: 1em;
+    }
+
+    .app-stores-hero img {
+        max-width: 120px;
+    }
+
+    .cta-app-stores img {
+        max-width: 120px;
+    }
+
+    /* Problem/Solution Card Layout for mobile */
+    .problem-solution-card {
+        flex-direction: column;
+    }
+
+    .problem-box {
+        border-bottom: 1px solid #ffb3b3;
+        border-left: none;
+    }
+
+    .solution-box {
+        border-top: none;
+    }
+}
