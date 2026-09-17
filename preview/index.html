@@ -29,6 +29,18 @@
        voices block shows the same icons as the app rather than look-alikes. -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;icon_names=lightbulb,school,touch_app&amp;display=swap" rel="stylesheet">
   
+  <!-- Flutter Web Demo Prefetches (idle background network cache) -->
+  <link rel="prefetch" href="demo/flutter_bootstrap.js">
+  <link rel="prefetch" href="demo/main.dart.js">
+  <link rel="prefetch" href="demo/canvaskit/canvaskit.wasm">
+  <link rel="prefetch" href="demo/assets/FontManifest.json">
+  <link rel="prefetch" href="demo/assets/fonts/MaterialIcons-Regular.otf">
+  <link rel="prefetch" href="demo/assets/packages/note_viewer/fonts/Almarai-Bold.ttf">
+  <link rel="prefetch" href="demo/assets/packages/note_viewer/fonts/Almarai-Regular.ttf">
+  <link rel="prefetch" href="demo/assets/packages/note_viewer/assets/onboarding/assets_m1_001_c00_000_bis1.svg">
+  <link rel="prefetch" href="demo/assets/packages/note_viewer/assets/onboarding/assets_m1_001_c00_000_bis1_ani_1.json">
+  <link rel="prefetch" href="demo/assets/packages/note_viewer/assets/onboarding/assets_m1_001_c00_000_bis1_ani_2.json">
+
   <!-- GSAP & ScrollTrigger -->
   <script>/*gsap core 3.12.5 inlined*//*!
  * GSAP 3.12.5
@@ -418,13 +430,22 @@
       position: fixed;
       inset: 0;
       z-index: 1100;
-      display: none;
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
       background: rgba(23, 50, 59, 0.72);
       align-items: center;
       justify-content: center;
       padding: 18px 14px;
     }
-    .live-modal.open { display: flex; }
+    .live-modal.open {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
     .live-phone {
       width: 100%;
       max-width: 430px;
@@ -2008,8 +2029,50 @@
       var liveHost = document.getElementById("demo-host");
       var liveTimer = document.getElementById("live-timer");
       var engineStarted = false;
+      var engineReady = false;
       var liveStart = null;
       var liveTick = null;
+
+      function startLiveEngine(isBackground) {
+        if (engineStarted) return;
+        engineStarted = true;
+
+        if (!isBackground) {
+          liveLoader.style.display = "flex";
+          liveStart = performance.now();
+          liveTick = setInterval(function () {
+            if (liveTimer && liveStart) {
+              liveTimer.innerText = "الوقت المنقضي: " +
+                ((performance.now() - liveStart) / 1000).toFixed(1) + " ثانية";
+            }
+          }, 100);
+        }
+
+        window._flutter = window._flutter || {};
+        var s = document.createElement("script");
+        s.src = "demo/flutter_bootstrap.js";
+        s.async = true;
+        s.onerror = function () {
+          clearInterval(liveTick);
+          engineStarted = false;
+          if (liveModal && liveModal.classList.contains("open")) {
+            closeLive();
+            alert("تعذر تحميل الدرس التفاعلي. يمكنك تحميل التطبيق وتجربة الوحدة الأولى مجانًا.");
+          }
+        };
+        document.body.appendChild(s);
+
+        var poll = setInterval(function () {
+          if (liveHost.querySelector("flt-glass-pane") || liveHost.querySelector("canvas")) {
+            clearInterval(poll);
+            clearInterval(liveTick);
+            engineReady = true;
+            liveLoader.style.display = "none";
+            liveHost.style.visibility = "visible";
+            document.dispatchEvent(new CustomEvent("site:lead", { detail: { action: "demo_ready" } }));
+          }
+        }, 80);
+      }
 
       function openLive() {
         closeModal();
@@ -2022,15 +2085,24 @@
           detail: { action: "demo_load_clicked" }
         }));
 
-        if (!engineStarted) {
-          engineStarted = true;
+        if (engineReady) {
+          // Instant opening: Flutter engine has already warmed and rendered its first frame!
+          liveLoader.style.display = "none";
+          liveHost.style.visibility = "visible";
+        } else {
           liveLoader.style.display = "flex";
-          liveStart = performance.now();
-          liveTick = setInterval(function () {
-            liveTimer.innerText = "الوقت المنقضي: " +
-              ((performance.now() - liveStart) / 1000).toFixed(1) + " ثانية";
-          }, 100);
-          loadLiveDemo();
+          if (!engineStarted) {
+            startLiveEngine(false);
+          } else {
+            // Already warming in background, show elapsed wait time
+            liveStart = performance.now();
+            liveTick = setInterval(function () {
+              if (liveTimer && liveStart) {
+                liveTimer.innerText = "الوقت المنقضي: " +
+                  ((performance.now() - liveStart) / 1000).toFixed(1) + " ثانية";
+              }
+            }, 100);
+          }
         }
       }
 
@@ -2053,29 +2125,36 @@
         if (e.key === "Escape" && liveModal.classList.contains("open")) closeLive();
       });
 
-      function loadLiveDemo() {
-        window._flutter = window._flutter || {};
-        var s = document.createElement("script");
-        s.src = "demo/flutter_bootstrap.js?v=" + Date.now();
-        s.async = true;
-        s.onerror = function () {
-          clearInterval(liveTick);
-          engineStarted = false; // let the next tap retry
-          closeLive();
-          alert("تعذر تحميل الدرس التفاعلي. يمكنك تحميل التطبيق وتجربة الوحدة الأولى مجانًا.");
-        };
-        document.body.appendChild(s);
+      // Background Idle Engine Warming:
+      // Once page assets load, silently boot Flutter in background when user scrolls towards the demo or during idle time
+      window.addEventListener("load", function () {
+        var trigger = document.getElementById("demo") || document.getElementById("how");
+        var hasTriggered = false;
+        function triggerWarm() {
+          if (hasTriggered) return;
+          hasTriggered = true;
+          startLiveEngine(true);
+        }
 
-        var poll = setInterval(function () {
-          if (liveHost.querySelector("flt-glass-pane") || liveHost.querySelector("canvas")) {
-            clearInterval(poll);
-            clearInterval(liveTick);
-            liveLoader.style.display = "none";
-            liveHost.style.visibility = "visible";
-            document.dispatchEvent(new CustomEvent("site:lead", { detail: { action: "demo_ready" } }));
-          }
-        }, 100);
-      }
+        if (trigger && typeof IntersectionObserver === "function") {
+          var obs = new IntersectionObserver(function (entries) {
+            if (entries[0].isIntersecting) {
+              triggerWarm();
+              obs.disconnect();
+            }
+          }, { rootMargin: "400px" });
+          obs.observe(trigger);
+        }
+
+        // Also warm after 1.8s idle if user stays on hero fold
+        if (typeof window.requestIdleCallback === "function") {
+          window.requestIdleCallback(function () {
+            setTimeout(triggerWarm, 1500);
+          }, { timeout: 3000 });
+        } else {
+          setTimeout(triggerWarm, 1800);
+        }
+      });
 
       // 3. GSAP Entrance Animations
       try {
