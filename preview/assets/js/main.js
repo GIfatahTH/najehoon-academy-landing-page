@@ -1,167 +1,246 @@
 document.addEventListener("DOMContentLoaded", function() {
-      // 2. Download Modal Handlers
-      const modal = document.getElementById("downloadModal");
-      const openModalBtns = document.querySelectorAll(".open-download-modal");
-      const closeModalBtn = document.getElementById("closeModalBtn");
+  // 2. Modal Handlers (Download Modal & Live Lesson Modal)
+  const modal = document.getElementById("downloadModal");
+  const openModalBtns = document.querySelectorAll(".open-download-modal");
+  const closeModalBtn = document.getElementById("closeModalBtn");
+  const liveCloseBtn = document.getElementById("live-close");
+  let lastFocusedElement = null;
 
-      function openModal(e) {
-        if (e) e.preventDefault();
-        if (modal) modal.classList.add("active");
-        document.dispatchEvent(new CustomEvent("site:lead", {
-          detail: {
-            action: "try_free_unit_click",
-            offer: "الوحدة الأولى مجانًا",
-            source: "landing_page_cta"
-          }
-        }));
+  function openModal(e) {
+    if (e) e.preventDefault();
+    if (modal && modal.classList.contains("active")) return;
+
+    lastFocusedElement = document.activeElement;
+
+    // If live demo was open, close it without an extra history step
+    const wasLiveOpen = liveModal && liveModal.classList.contains("open");
+    if (wasLiveOpen) {
+      liveModal.classList.remove("open");
+    }
+
+    if (modal) modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    // Synchronize history so Android hardware back gesture closes modal
+    if (wasLiveOpen) {
+      history.replaceState({ modal: "download" }, "", "");
+    } else {
+      history.pushState({ modal: "download" }, "", "");
+    }
+
+    if (closeModalBtn) closeModalBtn.focus();
+
+    document.dispatchEvent(new CustomEvent("site:lead", {
+      detail: {
+        action: "try_free_unit_click",
+        offer: "الوحدة الأولى مجانًا",
+        source: "landing_page_cta"
       }
+    }));
+  }
 
-      function closeModal() {
-        if (modal) modal.classList.remove("active");
-      }
+  function closeModal(opts) {
+    if (!modal || !modal.classList.contains("active")) return;
+    modal.classList.remove("active");
+    if (!liveModal || !liveModal.classList.contains("open")) {
+      document.body.style.overflow = "";
+    }
+    if (!(opts && opts.fromPopState)) {
+      history.back();
+    }
+    if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+      lastFocusedElement.focus();
+    }
+  }
 
-      openModalBtns.forEach(btn => btn.addEventListener("click", openModal));
-      if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+  openModalBtns.forEach(btn => btn.addEventListener("click", openModal));
+  if (closeModalBtn) closeModalBtn.addEventListener("click", function() { closeModal(); });
 
-      if (modal) {
-        modal.addEventListener("click", function(e) {
-          if (e.target === modal) closeModal();
-        });
-      }
+  if (modal) {
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) closeModal();
+    });
+  }
 
-      // Store Links click event dispatch
-      const storeLinks = document.querySelectorAll(".store-link");
-      storeLinks.forEach(link => {
-        link.addEventListener("click", function() {
-          const store = this.getAttribute("data-store") || "store_click";
-          document.dispatchEvent(new CustomEvent("site:lead", {
-            detail: {
-              action: "store_download_click",
-              store: store
-            }
-          }));
-        });
-      });
-
-      // 2a. Three-voices entrance. Plays when the block is actually looked at,
-      // for the same reason OnboardingEntrance takes `play`: a stagger that
-      // runs off-screen is a stagger nobody sees.
-      var voiceKey = document.getElementById("voice-key");
-      if (voiceKey) {
-        if (typeof IntersectionObserver === "function") {
-          new IntersectionObserver(function (entries, obs) {
-            entries.forEach(function (e) {
-              if (!e.isIntersecting) return;
-              e.target.classList.add("is-in");
-              obs.unobserve(e.target);
-            });
-          }, { threshold: 0.35 }).observe(voiceKey);
-        } else {
-          voiceKey.classList.add("is-in");
+  // Store Links click event dispatch
+  const storeLinks = document.querySelectorAll(".store-link");
+  storeLinks.forEach(link => {
+    link.addEventListener("click", function() {
+      const store = this.getAttribute("data-store") || "store_click";
+      document.dispatchEvent(new CustomEvent("site:lead", {
+        detail: {
+          action: "store_download_click",
+          store: store
         }
-      }
+      }));
+    });
+  });
 
-      // 2b. Live lesson modal — mounts the real note_viewer engine from /demo/
-      var liveModal = document.getElementById("live-modal");
-      var liveLoader = document.getElementById("live-loader");
-      var liveHost = document.getElementById("demo-host");
-      var liveTimer = document.getElementById("live-timer");
-      var engineStarted = false;
-      var engineReady = false;
-      var liveStart = null;
-      var liveTick = null;
+  // 2a. Three-voices entrance. Plays when the block is actually looked at,
+  // for the same reason OnboardingEntrance takes `play`: a stagger that
+  // runs off-screen is a stagger nobody sees.
+  var voiceKey = document.getElementById("voice-key");
+  if (voiceKey) {
+    if (typeof IntersectionObserver === "function") {
+      new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.classList.add("is-in");
+          obs.unobserve(e.target);
+        });
+      }, { threshold: 0.35 }).observe(voiceKey);
+    } else {
+      voiceKey.classList.add("is-in");
+    }
+  }
 
-      function startLiveEngine(isBackground) {
-        if (engineStarted) return;
-        engineStarted = true;
+  // 2b. Live lesson modal — mounts the real note_viewer engine from /demo/
+  var liveModal = document.getElementById("live-modal");
+  var liveLoader = document.getElementById("live-loader");
+  var liveHost = document.getElementById("demo-host");
+  var liveTimer = document.getElementById("live-timer");
+  var engineStarted = false;
+  var engineReady = false;
+  var liveStart = null;
+  var liveTick = null;
+  var failSafeTimer = null;
 
-        if (!isBackground) {
-          liveLoader.style.display = "flex";
-          liveStart = performance.now();
-          liveTick = setInterval(function () {
-            if (liveTimer && liveStart) {
-              liveTimer.innerText = "الوقت المنقضي: " +
-                ((performance.now() - liveStart) / 1000).toFixed(1) + " ثانية";
-            }
-          }, 100);
+  function handleEngineError() {
+    clearInterval(liveTick);
+    if (failSafeTimer) clearTimeout(failSafeTimer);
+    engineStarted = false;
+    if (liveModal && liveModal.classList.contains("open")) {
+      closeLive();
+      openModal();
+      alert("تعذر تجهيز الدرس التفاعلي في المتصفح. يمكنك تجربة الوحدة الأولى كاملة مجانًا عبر تحميل التطبيق.");
+    }
+  }
+
+  function startLiveEngine(isBackground) {
+    if (engineStarted) return;
+    engineStarted = true;
+
+    if (!isBackground) {
+      liveLoader.style.display = "flex";
+      liveStart = performance.now();
+      liveTick = setInterval(function () {
+        if (liveTimer && liveStart) {
+          liveTimer.innerText = "الوقت المنقضي: " +
+            ((performance.now() - liveStart) / 1000).toFixed(1) + " ثانية";
         }
+      }, 100);
+    }
 
-        window._flutter = window._flutter || {};
-        var s = document.createElement("script");
-        s.src = "demo/flutter_bootstrap.js";
-        s.async = true;
-        s.onerror = function () {
-          clearInterval(liveTick);
-          engineStarted = false;
-          if (liveModal && liveModal.classList.contains("open")) {
-            closeLive();
-            alert("تعذر تحميل الدرس التفاعلي. يمكنك تحميل التطبيق وتجربة الوحدة الأولى مجانًا.");
-          }
-        };
-        document.body.appendChild(s);
+    window._flutter = window._flutter || {};
+    var s = document.createElement("script");
+    s.src = "demo/flutter_bootstrap.js";
+    s.async = true;
+    s.onerror = handleEngineError;
+    document.body.appendChild(s);
 
-        var poll = setInterval(function () {
-          if (liveHost.querySelector("flt-glass-pane") || liveHost.querySelector("canvas")) {
-            clearInterval(poll);
-            clearInterval(liveTick);
-            engineReady = true;
-            liveLoader.style.display = "none";
-            liveHost.style.visibility = "visible";
-            document.dispatchEvent(new CustomEvent("site:lead", { detail: { action: "demo_ready" } }));
-          }
-        }, 80);
+    var poll = setInterval(function () {
+      if (liveHost.querySelector("flt-glass-pane") || liveHost.querySelector("canvas")) {
+        clearInterval(poll);
+        clearInterval(liveTick);
+        if (failSafeTimer) clearTimeout(failSafeTimer);
+        engineReady = true;
+        liveLoader.style.display = "none";
+        liveHost.style.visibility = "visible";
+        document.dispatchEvent(new CustomEvent("site:lead", { detail: { action: "demo_ready" } }));
       }
+    }, 80);
 
-      function openLive() {
+    // Failsafe safety net: maximum 30 seconds wait before graceful fallback
+    failSafeTimer = setTimeout(function () {
+      if (!engineReady) {
+        clearInterval(poll);
+        handleEngineError();
+      }
+    }, 30000);
+  }
+
+  function openLive() {
+    if (liveModal && liveModal.classList.contains("open")) return;
+
+    lastFocusedElement = document.activeElement;
+
+    // If download modal was open, close it without an extra history step
+    const wasDownloadOpen = modal && modal.classList.contains("active");
+    if (wasDownloadOpen) {
+      modal.classList.remove("active");
+    }
+
+    liveModal.classList.add("open");
+    document.body.style.overflow = "hidden";
+
+    // Synchronize history so Android hardware back gesture closes lesson
+    if (wasDownloadOpen) {
+      history.replaceState({ modal: "live" }, "", "");
+    } else {
+      history.pushState({ modal: "live" }, "", "");
+    }
+
+    if (liveCloseBtn) liveCloseBtn.focus();
+
+    document.dispatchEvent(new CustomEvent("site:lead", {
+      detail: { action: "demo_load_clicked" }
+    }));
+
+    if (engineReady) {
+      // Instant opening: Flutter engine has already warmed and rendered its first frame!
+      liveLoader.style.display = "none";
+      liveHost.style.visibility = "visible";
+    } else {
+      liveLoader.style.display = "flex";
+      if (!engineStarted) {
+        startLiveEngine(false);
+      } else {
+        // Already warming in background, show elapsed wait time
+        liveStart = performance.now();
+        liveTick = setInterval(function () {
+          if (liveTimer && liveStart) {
+            liveTimer.innerText = "الوقت المنقضي: " +
+              ((performance.now() - liveStart) / 1000).toFixed(1) + " ثانية";
+          }
+        }, 100);
+      }
+    }
+  }
+
+  // fromPopState: the back gesture already popped our entry, so don't pop again.
+  function closeLive(opts) {
+    if (!liveModal || !liveModal.classList.contains("open")) return;
+    liveModal.classList.remove("open");
+    if (!modal || !modal.classList.contains("active")) {
+      document.body.style.overflow = "";
+    }
+    if (!(opts && opts.fromPopState)) {
+      history.back();
+    }
+    if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+      lastFocusedElement.focus();
+    }
+  }
+
+  window.addEventListener("popstate", function () {
+    if (liveModal && liveModal.classList.contains("open")) closeLive({ fromPopState: true });
+    if (modal && modal.classList.contains("active")) closeModal({ fromPopState: true });
+  });
+
+  document.querySelectorAll(".open-live-demo").forEach(function (b) {
+    b.addEventListener("click", openLive);
+  });
+  if (liveCloseBtn) liveCloseBtn.addEventListener("click", function () { closeLive(); });
+
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      if (liveModal && liveModal.classList.contains("open")) {
+        closeLive();
+      } else if (modal && modal.classList.contains("active")) {
         closeModal();
-        liveModal.classList.add("open");
-        document.body.style.overflow = "hidden";
-        // A history entry so the phone's own back gesture closes the lesson
-        // instead of leaving the site — that is what visitors reach for.
-        history.pushState({ liveModal: true }, "", "");
-        document.dispatchEvent(new CustomEvent("site:lead", {
-          detail: { action: "demo_load_clicked" }
-        }));
-
-        if (engineReady) {
-          // Instant opening: Flutter engine has already warmed and rendered its first frame!
-          liveLoader.style.display = "none";
-          liveHost.style.visibility = "visible";
-        } else {
-          liveLoader.style.display = "flex";
-          if (!engineStarted) {
-            startLiveEngine(false);
-          } else {
-            // Already warming in background, show elapsed wait time
-            liveStart = performance.now();
-            liveTick = setInterval(function () {
-              if (liveTimer && liveStart) {
-                liveTimer.innerText = "الوقت المنقضي: " +
-                  ((performance.now() - liveStart) / 1000).toFixed(1) + " ثانية";
-              }
-            }, 100);
-          }
-        }
       }
-
-      // fromPopState: the back gesture already popped our entry, so don't pop again.
-      function closeLive(opts) {
-        liveModal.classList.remove("open");
-        document.body.style.overflow = "";
-        if (!(opts && opts.fromPopState)) history.back();
-      }
-
-      window.addEventListener("popstate", function () {
-        if (liveModal.classList.contains("open")) closeLive({ fromPopState: true });
-      });
-
-      document.querySelectorAll(".open-live-demo").forEach(function (b) {
-        b.addEventListener("click", openLive);
-      });
-      document.getElementById("live-close").addEventListener("click", function () { closeLive(); });
-      window.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && liveModal.classList.contains("open")) closeLive();
-      });
+    }
+  });
 
       // Background Idle Engine Warming:
       // Once page assets load, silently boot Flutter in background when user scrolls towards the demo or during idle time

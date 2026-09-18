@@ -373,6 +373,7 @@
       align-items: center;
       justify-content: center;
       padding: 18px 14px;
+      overscroll-behavior: contain;
     }
     .live-modal.open {
       visibility: visible;
@@ -1094,6 +1095,7 @@
       justify-content: center;
       padding: 1rem;
       backdrop-filter: blur(4px);
+      overscroll-behavior: contain;
     }
     .modal-backdrop.active {
       display: flex;
