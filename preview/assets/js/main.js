@@ -146,7 +146,9 @@ document.addEventListener("DOMContentLoaded", function() {
         engineReady = true;
         liveLoader.style.display = "none";
         liveHost.style.visibility = "visible";
-        document.dispatchEvent(new CustomEvent("site:lead", { detail: { action: "demo_ready" } }));
+        var activeDemo = (liveHost && liveHost.getAttribute("data-demo")) || "m0_0021";
+        window.dispatchEvent(new CustomEvent("site:switch_demo", { detail: activeDemo }));
+        document.dispatchEvent(new CustomEvent("site:lead", { detail: { action: "demo_ready", demo: activeDemo } }));
       }
     }, 80);
 
@@ -159,7 +161,26 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 30000);
   }
 
-  function openLive() {
+  const demoTitles = {
+    "m0_0021": "درس تفاعلي: نسبية الحركة والسكون (علوم فيزيائية)",
+    "m0_0011": "درس تفاعلي: مجموعة الأعداد الناطقة (رياضيات)",
+    "m0_0012": "درس تفاعلي: القيمة المطلقة والمسافة (رياضيات)"
+  };
+
+  function openLive(demoId, customTitle) {
+    demoId = demoId || "m0_0021";
+    var title = customTitle || demoTitles[demoId] || "درس تفاعلي حقيقي";
+
+    var titleEl = document.getElementById("live-lesson-title") || document.querySelector("#live-modal .live-bar span");
+    if (titleEl) titleEl.innerText = title;
+
+    if (liveHost) {
+      liveHost.setAttribute("data-demo", demoId);
+    }
+
+    // Always notify Flutter of the requested demo
+    window.dispatchEvent(new CustomEvent("site:switch_demo", { detail: demoId }));
+
     if (liveModal && liveModal.classList.contains("open")) return;
 
     lastFocusedElement = document.activeElement;
@@ -175,21 +196,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Synchronize history so Android hardware back gesture closes lesson
     if (wasDownloadOpen) {
-      history.replaceState({ modal: "live" }, "", "");
+      history.replaceState({ modal: "live", demo: demoId }, "", "");
     } else {
-      history.pushState({ modal: "live" }, "", "");
+      history.pushState({ modal: "live", demo: demoId }, "", "");
     }
 
     if (liveCloseBtn) liveCloseBtn.focus();
 
     document.dispatchEvent(new CustomEvent("site:lead", {
-      detail: { action: "demo_load_clicked" }
+      detail: { action: "demo_load_clicked", demo: demoId }
     }));
 
     if (engineReady) {
       // Instant opening: Flutter engine has already warmed and rendered its first frame!
       liveLoader.style.display = "none";
       liveHost.style.visibility = "visible";
+      window.dispatchEvent(new CustomEvent("site:switch_demo", { detail: demoId }));
     } else {
       liveLoader.style.display = "flex";
       if (!engineStarted) {
@@ -228,7 +250,12 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   document.querySelectorAll(".open-live-demo").forEach(function (b) {
-    b.addEventListener("click", openLive);
+    b.addEventListener("click", function (e) {
+      if (e) e.preventDefault();
+      var demoId = this.getAttribute("data-demo") || "m0_0021";
+      var title = this.getAttribute("data-title") || "";
+      openLive(demoId, title);
+    });
   });
   if (liveCloseBtn) liveCloseBtn.addEventListener("click", function () { closeLive(); });
 
