@@ -141,13 +141,10 @@ document.addEventListener("DOMContentLoaded", function() {
     var poll = setInterval(function () {
       if (liveHost.querySelector("flt-glass-pane") || liveHost.querySelector("canvas")) {
         clearInterval(poll);
-        clearInterval(liveTick);
         if (failSafeTimer) clearTimeout(failSafeTimer);
         engineReady = true;
-        liveLoader.style.display = "none";
-        liveHost.style.visibility = "visible";
+        revealLesson();
         var activeDemo = (liveHost && liveHost.getAttribute("data-demo")) || "m0_0021";
-        window.dispatchEvent(new CustomEvent("site:switch_demo", { detail: activeDemo }));
         document.dispatchEvent(new CustomEvent("site:lead", { detail: { action: "demo_ready", demo: activeDemo } }));
       }
     }, 80);
@@ -166,6 +163,23 @@ document.addEventListener("DOMContentLoaded", function() {
     "m0_0011": "درس تفاعلي: القيمة المطلقة والمسافة (رياضيات)",
     "m0_0012": "درس تفاعلي: القيمة المطلقة والمسافة (رياضيات)"
   };
+
+  let modalOpenTime = 0;
+  const MIN_NOTICE_TIME_MS = 3500; // 3.5s minimum display to read the notice and allow fonts to load
+
+  function revealLesson() {
+    var elapsed = performance.now() - modalOpenTime;
+    var remaining = Math.max(0, MIN_NOTICE_TIME_MS - elapsed);
+    setTimeout(function () {
+      if (liveModal && liveModal.classList.contains("open")) {
+        clearInterval(liveTick);
+        liveLoader.style.display = "none";
+        liveHost.style.visibility = "visible";
+        var activeDemo = (liveHost && liveHost.getAttribute("data-demo")) || "m0_0021";
+        window.dispatchEvent(new CustomEvent("site:switch_demo", { detail: activeDemo }));
+      }
+    }, remaining);
+  }
 
   function openLive(demoId, customTitle) {
     demoId = demoId || "m0_0021";
@@ -207,24 +221,24 @@ document.addEventListener("DOMContentLoaded", function() {
       detail: { action: "demo_load_clicked", demo: demoId }
     }));
 
+    modalOpenTime = performance.now();
+    liveLoader.style.display = "flex";
+    liveHost.style.visibility = "hidden";
+
+    liveStart = performance.now();
+    clearInterval(liveTick);
+    liveTick = setInterval(function () {
+      if (liveTimer && liveStart) {
+        liveTimer.innerText = "الوقت المنقضي: " +
+          ((performance.now() - liveStart) / 1000).toFixed(1) + " ثانية";
+      }
+    }, 100);
+
     if (engineReady) {
-      // Instant opening: Flutter engine has already warmed and rendered its first frame!
-      liveLoader.style.display = "none";
-      liveHost.style.visibility = "visible";
-      window.dispatchEvent(new CustomEvent("site:switch_demo", { detail: demoId }));
+      revealLesson();
     } else {
-      liveLoader.style.display = "flex";
       if (!engineStarted) {
         startLiveEngine(false);
-      } else {
-        // Already warming in background, show elapsed wait time
-        liveStart = performance.now();
-        liveTick = setInterval(function () {
-          if (liveTimer && liveStart) {
-            liveTimer.innerText = "الوقت المنقضي: " +
-              ((performance.now() - liveStart) / 1000).toFixed(1) + " ثانية";
-          }
-        }, 100);
       }
     }
   }
@@ -258,6 +272,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
   if (liveCloseBtn) liveCloseBtn.addEventListener("click", function () { closeLive(); });
+
+  window.addEventListener("site:open_download_modal", function () {
+    closeLive();
+    setTimeout(function () {
+      openModal();
+    }, 150);
+  });
 
   window.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
