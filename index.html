@@ -1,246 +1,844 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Flutter element embedding resolves the demo's assets against this,
+       because the demo build lives in /demo/ while this page is at the root. -->
+  <meta name="assetBase" content="demo/">
+  <title>ناجحون أكاديمي — منصة التعلم التفاعلي للتلاميذ في الجزائر</title>
+  <meta name="description" content="ناجحون أكاديمي: منصة تفاعلية للتلاميذ في الجزائر — الدرس حوار يجيب فيه التلميذ ولا يشاهد. الوحدة الأولى كاملة مجانًا لكل مادة، دون بطاقة دفع. حمّل التطبيق لأندرويد وويندوز.">
+  <link rel="canonical" href="https://akadjihoon.com/">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ناجحون اكاديمي - مستقبلك الدراسي يبدأ هنا!</title>
-    <meta name="description"
-        content="اكتشف ناجحون اكاديمي: الحل المتكامل لطلاب المرحلة المتوسطة لمشاكل ضعف الفهم، صعوبة الحفظ، والنسيان. تعلم مستقل، ذاكرة قوية، شغف متجدد، ومتابعة ذكية للاهل. جرب التطبيق مجاناً الآن وامنح ابنك فرصة التفوق الحقيقي!">
-    <link rel="icon" href="assets/images/favicon.png" type="image/png">
-    <!-- Open Graph / Facebook Meta Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://gifatahth.github.io/najehoon-academy-landing-page/">
-    <meta property="og:title" content="ناجحون اكاديمي - مستقبلك الدراسي يبدأ هنا!">
-    <meta property="og:description"
-        content="اكتشف ناجحون اكاديمي: الحل المتكامل لطلاب المرحلة المتوسطة لمشاكل ضعف الفهم، صعوبة الحفظ، والنسيان. تعلم مستقل، ذاكرة قوية، شغف متجدد، ومتابعة ذكية للاهل. جرب التطبيق مجاناً الآن وامنح ابنك فرصة التفوق الحقيقي!">
-    <meta property="og:image"
-        content="https://raw.githubusercontent.com/GIfatahTH/najehoon-academy-landing-page/master/assets/images/najehoon_academy_logo.png">
-    <meta property="og:locale" content="ar_AR">
-    <meta property="og:site_name" content="ناجحون اكاديمي">
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/logo-1024.png">
 
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://gifatahth.github.io/najehoon-academy-landing-page/">
-    <meta name="twitter:title" content="ناجحون اكاديمي - مستقبلك الدراسي يبدأ هنا!">
-    <meta name="twitter:description"
-        content="اكتشف ناجحون اكاديمي: الحل المتكامل لطلاب المرحلة المتوسطة لمشاكل ضعف الفهم، صعوبة الحفظ، والنسيان. تعلم مستقل، ذاكرة قوية، شغف متجدد، ومتابعة ذكية للاهل. جرب التطبيق مجاناً الآن وامنح ابنك فرصة التفوق الحقيقي!">
-    <meta name="twitter:image"
-        content="https://raw.githubusercontent.com/GIfatahTH/najehoon-academy-landing-page/master/assets/images/najehoon_academy_logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_DZ">
+  <meta property="og:site_name" content="ناجحون أكاديمي">
+  <meta property="og:title" content="ناجحون أكاديمي — تعلّمٌ حقيقي يوصلك إلى الامتحان جاهزًا لا واهمًا">
+  <meta property="og:description" content="جرّب درسًا تفاعليًا حقيقيًا من المتصفح دون تحميل، ثم حمّل التطبيق والوحدة الأولى مجانًا لكل مادة.">
+  <meta property="og:image" content="https://akadjihoon.com/assets/img/logo-1024.png">
+  <meta property="og:url" content="https://akadjihoon.com/">
+  <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: El Messiri & Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@600;700&amp;family=Tajawal:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <!-- Only the three glyphs the onboarding screen actually uses (~3 KB), so the
+       voices block shows the same icons as the app rather than look-alikes. -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;icon_names=lightbulb,school,touch_app&amp;display=swap" rel="stylesheet">
+  
+  <!-- Flutter Web Demo Prefetches (idle background network cache) -->
+  <link rel="prefetch" href="demo/flutter_bootstrap.js">
+  <link rel="prefetch" href="demo/main.dart.js">
+  <link rel="prefetch" href="demo/canvaskit/canvaskit.wasm">
+  <link rel="prefetch" href="demo/assets/FontManifest.json">
+  <link rel="prefetch" href="demo/assets/fonts/MaterialIcons-Regular.otf">
+  <link rel="prefetch" href="demo/assets/packages/note_viewer/fonts/Almarai-Bold.ttf">
+  <link rel="prefetch" href="demo/assets/packages/note_viewer/fonts/Almarai-Regular.ttf">
+  <link rel="prefetch" href="demo/assets/packages/note_viewer/assets/onboarding/assets_m1_001_c00_000_bis1.svg">
+  <link rel="prefetch" href="demo/assets/packages/note_viewer/assets/onboarding/assets_m1_001_c00_000_bis1_ani_1.json">
+  <link rel="prefetch" href="demo/assets/packages/note_viewer/assets/onboarding/assets_m1_001_c00_000_bis1_ani_2.json">
+
+  <!-- GSAP Core & ScrollTrigger (Separated bundle) -->
+  <script src="assets/js/gsap.min.js" defer></script>
+
+  <link rel="preload" as="image" href="assets/img/logo.svg"><link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "ناجحون أكاديمي",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Android",
+        "description": "منصة تعليمية تفاعلية للتلاميذ في الجزائر: الدرس حوار يجيب فيه التلميذ، والوحدة الأولى كاملة مجانًا لكل مادة.",
+        "url": "https://akadjihoon.com/",
+        "image": "https://akadjihoon.com/assets/img/logo-1024.png",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "DZD" },
+        "installUrl": "https://play.google.com/store/apps/details?id=com.keydevolopper78.akadjihhon"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "ناجحون أكاديمي — ويندوز",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Windows",
+        "url": "https://akadjihoon.com/",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "DZD" },
+        "installUrl": "https://apps.microsoft.com/store/detail/9NW0GLT1NDMX"
+      }
+    ]
+  }
+  </script>
 </head>
-
 <body>
-    <header class="hero">
-        <div class="top-bar"> <!-- Contains only the logo, centered -->
-            <div class="logo">
-                <img src="assets/images/najehoon_academy_logo.png" alt="شعار تطبيق ناجحون اكاديمي">
+
+  <!-- Site Navigation Chassis -->
+  <header class="site-header" data-wid="sec-1">
+    <div class="container nav-inner" data-wid="e-198">
+      <a href="#hero" class="brand-wrap" data-brand="nav" aria-label="ناجحون أكاديمي" data-wid="e-2">
+        <!-- The app's own logo mark (i_akadjihoon_app/assets/appIcons/app_logo.svg).
+             Text-free on purpose: the wordmark versions of this asset have the
+             brand name broken into mis-shaped letters, so the name is set as
+             live text beside it instead. -->
+        <img class="brand-icon" src="assets/img/logo.svg" alt="" width="32" height="32">
+        <div data-wid="e-199">
+          <span data-wid="e-3">ناجحون أكاديمي</span>
+          <span class="brand-sub" data-wid="e-4">تعلّمٌ حقيقي… يوصلك إلى الامتحان جاهزًا لا واهمًا</span>
+        </div>
+      </a>
+
+      <nav aria-label="أقسام الصفحة">
+        <ul class="nav-chips">
+          <li data-wid="e-5"><a href="#demo" class="nav-chip-link" data-wid="e-6">جرّب الدرس</a></li>
+          <li data-wid="e-7"><a href="#how" class="nav-chip-link" data-wid="e-8">كيف يعمل الدرس</a></li>
+          <li data-wid="e-9"><a href="#interactive" class="nav-chip-link" data-wid="e-10">العناصر التفاعلية</a></li>
+          <li data-wid="e-11"><a href="#motivation" class="nav-chip-link" data-wid="e-12">الدافعية</a></li>
+          <li data-wid="e-13"><a href="#tracking" class="nav-chip-link" data-wid="e-14">متابعة التقدم</a></li>
+        </ul>
+      </nav>
+
+      <a href="#offer" class="nav-cta-btn open-download-modal" data-wid="e-15">
+        <span data-wid="e-16">جرّب الوحدة الأولى مجانًا</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section" data-wid="hero">
+      <div class="container hero-grid" data-wid="e-200">
+        <div class="hero-text-col" data-wid="e-201">
+          <div class="chip-label" data-wid="e-202">
+            <span class="zellij-dot" data-wid="e-17"></span>
+            <span data-wid="e-18">المنصة التفاعلية الموجهة للتلاميذ في الجزائر</span>
+          </div>
+          
+          <h1 class="hero-masthead" data-wid="e-19">
+            يبدو أن ابنك يذاكر… <br>
+            <span class="accent-word" data-wid="e-20">لكن هل يفهم فعلاً؟</span>
+          </h1>
+
+          <p class="hero-lede" data-wid="e-21">
+            في ناجحون أكاديمي، يتجاوز التلميذ مشكلة التعليم السلبي ووهم المعرفة؛ فهو لا يتلقى الدرس متفرجًا بل يتفاعل معه بالتفكير والإجابة لحظة بلحظة، <strong>فتعاد له المفاهيم في اللحظة المناسبة قبل أن ينساها</strong> — ليصل إلى الامتحان وكل فكرة حاضرة ومثبتة في ذهنه.
+          </p>
+
+          <div class="cta-cluster" data-wid="e-203">
+            <button type="button" class="btn-terracotta open-download-modal" data-wid="e-22">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span data-wid="e-23">جرّب الوحدة الأولى مجانًا</span>
+            </button>
+
+            <a href="https://play.google.com/store/apps/details?id=com.keydevolopper78.akadjihhon" class="btn-store store-link" data-store="google-play" aria-label="تحميل من Google Play" data-wid="e-24" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path fill="#34A853" d="M3.4 2.1 13.1 12l3.9-2.2z"></path><path fill="#EA4335" d="M3.4 21.9 13.1 12l3.9 2.2z"></path><path fill="#FBBC04" d="M17 9.8 21.6 12 17 14.2 13.1 12z"></path><path fill="#4285F4" d="M3.4 2.1v19.8L13.1 12z"></path></svg>
+              <span data-wid="e-25">Google Play</span>
+            </a>
+
+            <a href="https://apps.microsoft.com/store/detail/9NW0GLT1NDMX?cid=DevShareMTGPCS" class="btn-store store-link" data-store="microsoft-store" aria-label="تحميل لويندوز عبر Microsoft Store" data-wid="e-26" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.902-1.799"></path></svg>
+              <span data-wid="e-27">Microsoft Store (ويندوز)</span>
+            </a>
+          </div>
+
+          <div class="hero-quick-demos" style="margin-top: 1.1rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <span style="font-size: 0.88rem; color: var(--muted); font-weight: 600;">⚡ أو عاين محرك الدروس مباشرة:</span>
+            <a href="#demo" class="hero-demo-chip" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.85rem; background: var(--secondary); border: 1px solid var(--border); border-radius: var(--radius-full); font-size: 0.85rem; color: var(--foreground); text-decoration: none; font-weight: 600;">
+              <span>فيزياء (الحركة)</span>
+              <span>•</span>
+              <span>رياضيات (القيمة المطلقة)</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- Hero Fold Facts Bar -->
+          <div class="hero-facts-bar" data-wid="e-204">
+            <div class="fact-item" data-wid="e-205">
+              <div class="fact-tile-icon" data-wid="e-206"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+              <span class="fact-text" data-wid="e-28">الوحدة الأولى كاملة مجانًا لكل مادة دون استثناء</span>
             </div>
+            <div class="fact-item" data-wid="e-207">
+              <div class="fact-tile-icon" data-wid="e-208"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+              <span class="fact-text" data-wid="e-29">دون بطاقة دفع ودون أي التزام مسبق</span>
+            </div>
+            <div class="fact-item" data-wid="e-209">
+              <div class="fact-tile-icon" data-wid="e-210"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+              <span class="fact-text" data-wid="e-30">يعمل بالكامل دون إنترنت بعد التحميل</span>
+            </div>
+          </div>
         </div>
 
-        <div class="hero-content"> <!-- Main hero text and CTA -->
-            <h1>وداعا لصعوبة الفهم والنسيان! 🧠 مستقبل ابنك الدراسي يبدأ الآن</h1>
-            <p class="subtitle">هل تعليم ابنك في المرحلة المتوسطة يسبب لك القلق؟ "ناجحون اكاديمي" يقدم الحل المتكامل
-                لتفوق مستدام</p>
-            <div class="hero-app-showcase">
-                <img src="assets/images/hero_app_mockup.png" alt="شاشات تطبيق ناجحون اكاديمي على كمبيوتر وهاتف">
+        <!-- Hero Visual: La Colonne & Concept Card -->
+        <div class="hero-zellij-showcase" data-wid="e-211">
+          <div class="hero-showcase-inner" data-wid="e-212">
+            <div class="hero-zellij-header" data-wid="e-213">
+              <span class="hero-badge-tag" data-wid="e-31">فلسفة التعلّم التفاعلي</span>
             </div>
 
-            <div class="hero-cta-download">
-                <a class="cta-button primary-cta"
-                    href="https://play.google.com/store/apps/details?id=com.keydevolopper78.akadjihhon">جرب التطبيق
-                    مجانا اليوم!</a>
-                <p class="hero-guarantee-text">لن تدفع شيئا حتى تتأكد بنفسك من جودتنا وفعالية منهجنا</p>
-                <div class="app-stores-hero">
-                    <a href="https://play.google.com/store/apps/details?id=com.keydevolopper78.akadjihhon"
-                        target="_blank">
-                        <img src="assets/images/google_play_store.png" alt="تنزيل من متجر جوجل بلاي">
-                    </a>
-                    <a href="https://apps.microsoft.com/store/detail/9NW0GLT1NDMX?cid=DevShareMTGPCS" target="_blank">
-                        <img src="assets/images/windows_play_store.png" alt="تنزيل من متجر ويندوز">
-                    </a>
-                </div>
+            <div class="hero-concept-card" data-wid="e-214">
+              <h3 class="concept-title" data-wid="e-35">ما هو "وهم المعرفة"؟</h3>
+              <p class="concept-quote" data-wid="e-36">
+                عندما يشاهد التلميذ شرحًا أو يقرأ ملخصًا، يعتقد عقله أنه استوعب المعلومة لأنها تبدو سهلة أمامه. لكن عند مواجهة ورقة الامتحان بمفرده، يكتشف عجزه عن استدعائها.
+              </p>
+              <div class="concept-footer-pill" data-wid="e-215">
+                الحل: التفكير والإجابة في كل خطوة قبل رؤية الحل
+              </div>
             </div>
+
+            <div style="width: 100%; border-radius: var(--radius); overflow: hidden; border: 2px solid var(--grout-line); background-color: var(--secondary); position: relative;" data-wid="e-216">
+              <!-- Was a bitmap of the logo + four promises, but that asset
+                   renders the brand name with broken letter shapes (and a
+                   non-Arabic "گ"). Same content as live text instead: correct
+                   Arabic, and it scales. -->
+              <div class="brand-promise">
+                <div class="brand-promise-head">
+                  <img src="assets/img/logo.svg" alt="" width="54" height="54" fetchpriority="high">
+                  <div>
+                    <strong>ناجحون أكاديمي</strong>
+                    <span>تعلّمٌ حقيقي… يوصلك إلى الامتحان جاهزًا لا واهمًا</span>
+                  </div>
+                </div>
+                <ul class="brand-promise-list">
+                  <li>حوار سقراطي يُثير العقل</li>
+                  <li>تفاعل يرفع التركيز</li>
+                  <li>استذكار نشِط يُعمّق المعرفة</li>
+                  <li>مراجعة في اللحظة المناسبة قبل أن ينساها</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-    </header>
+      </div>
+    </section>
 
-    <main>
-        <section class="value-proposition-section">
-            <h2>نحن ندرك تحديات التعليم اليوم... ولدينا الحل!</h2>
-            <p class="intro-paragraph">في عالم يزداد فيه تعقيد المناهج وضيق الوقت، اصبح ابناؤنا يواجهون صعوبات جمة في
-                مسيرتهم التعليمية. من ضعف الفهم والتشتت الذهني، الى النسيان المتكرر وفقدان الثقة بالنفس. كاولياء امور،
-                تشعرون بهذا القلق وترغبون في الافضل لابنائكم. <strong>"ناجحون اكاديمي" هنا ليحول هذه التحديات الى فرص
-                    تفوق حقيقية!</strong></p>
-        </section>
 
-        <section class="problem-solution-details">
-            <div class="problem-solution-card">
-                <div class="problem-box">
-                    <h3>المشكلة 1: ضعف الفهم والتشتت 😩</h3>
-                    <p>ابنك يكافح لفهم المفاهيم المعقدة ويجد صعوبة في التركيز خلال الدروس الطويلة</p>
-                </div>
-                <div class="solution-box">
-                    <h3>حلنا: فهم عميق وتركيز مستمر 🔎</h3>
-                    <ul>
-                        <li><span class="list-icon">✔️</span> <strong>لا معلومة جاهزة!</strong> منهجنا السقراطي يدفع
-                            ابنك لاكتشاف المعرفة بنفسه، مما يرسخ الفهم بعمق</li>
-                        <li><span class="list-icon">✔️</span> <strong>تعليم تفاعلي مبسط:</strong> الدروس مقسمة لبطاقات
-                            تعلم ذكية باسئلة متتابعة ترفع التركيز وتمنع التشتت</li>
-                        <li><span class="list-icon">✔️</span> <strong>تغذية راجعة فورية وذكية:</strong> تصحح الاخطاء
-                            وتعمق الفهم في لحظتها</li>
-                    </ul>
-                </div>
+    <!-- SHOWPIECE: "جرّب درسين تفاعليين حقيقيين" (Physics & Math Interactive Experiences) -->
+    <section id="demo" class="section-wrap demo-section" data-wid="demo-section">
+      <div class="container" data-wid="e-335">
+        <div class="section-head" data-wid="e-218">
+          <div class="chip-label accent-chip" data-wid="e-219">
+            <span class="zellij-dot" data-wid="e-37"></span>
+            <span data-wid="e-38">تجربة تفاعلية حية في المتصفح</span>
+          </div>
+          <h2 class="section-title" data-wid="e-39">جرّب بنفسك الآن: كيف يتحول الدرس إلى حوار وتفاعل حقيقي؟</h2>
+          <p class="section-subtitle" data-wid="e-40">
+            ليس مقطع فيديو تشاهده، بل <strong>محرّك الدروس الحقيقي</strong> الذي يتفاعل به التلاميذ — يعمل هنا مباشرة في متصفحك دون تحميل: خطوات متسلسلة ورسوم متحركة وتفكير ذاتي قبل رؤية الحل.
+          </p>
+        </div>
+
+        <div class="demos-duo-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 960px; margin: 2rem auto 0;">
+          <!-- Card 1: Physics -->
+          <div class="lesson-demo-card" style="margin-top: 0;">
+            <div class="lesson-demo-head">
+              <div class="chip-label accent-chip" style="margin: 0;">
+                <span class="zellij-dot"></span>
+                <span>علوم فيزيائية • أولى ثانوي</span>
+              </div>
+              <span style="font-size: 0.85rem; color: var(--muted); font-weight: 500;">الميكانيك والحركة</span>
+            </div>
+            <h3 class="lesson-demo-title">نسبية الحركة والسكون واختيار المرجع</h3>
+            <p class="lesson-demo-desc">
+              شاهد الموقف الحركي وتجربة القطار والمراقبين بالرسوم المتحركة التفاعلية، وأجب بنفسك خطوة بخطوة لتستنتج القانون الفيزيائي لاختيار المرجع دون أي تلقين سطحي.
+            </p>
+            <div class="lesson-demo-footer">
+              <button type="button" class="nav-cta-btn open-live-demo" data-demo="m0_0021" data-title="درس تفاعلي: نسبية الحركة والسكون (علوم فيزيائية)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>جرّب درس الفيزياء (الحركة والسكون)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Math Absolute Value -->
+          <div class="lesson-demo-card" style="margin-top: 0;">
+            <div class="lesson-demo-head">
+              <div class="chip-label mint-chip" style="margin: 0;">
+                <span class="zellij-dot"></span>
+                <span>رياضيات • أولى ثانوي</span>
+              </div>
+              <span style="font-size: 0.85rem; color: var(--muted); font-weight: 500;">الترتيب والقيمة المطلقة</span>
+            </div>
+            <h3 class="lesson-demo-title">القيمة المطلقة كمسافة هندسية وفخ الإشارة</h3>
+            <p class="lesson-demo-desc">
+              تجاوز الفخ الكلاسيكي في اختبارات الفصل الأول! كيف ينتقل التلميذ من الحفظ الشكلي إلى الفهم الهندسي للمسافة على المستقيم العددي مع تجربة تفاعلية لسحب النقطة واستنتاج القاعدة.
+            </p>
+            <div class="lesson-demo-footer">
+              <button type="button" class="nav-cta-btn open-live-demo" data-demo="m0_0011" data-title="درس تفاعلي: القيمة المطلقة والمسافة (رياضيات)" style="background-color: var(--secondary); color: var(--foreground); border-color: var(--border);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>جرّب درس الرياضيات (القيمة المطلقة)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: "كيف يعمل الدرس" (The 4 Stations) -->
+    <section id="how" class="section-wrap how-section" data-wid="how-it-works">
+      <div class="container" data-wid="e-237">
+        <div class="section-head" data-wid="e-238">
+          <div class="chip-label" data-wid="e-239">
+            <span class="zellij-dot" data-wid="e-60"></span>
+            <span data-wid="e-61">رحلة الدرس التفاعلي</span>
+          </div>
+          <h2 class="section-title" data-wid="e-62">كيف يُبنى الدرس داخل المنصة؟</h2>
+          <p class="section-subtitle" data-wid="e-63">
+            منهجية علمية واضحة في أربع محطات متتالية تجعل التلميذ شريكًا في بناء المعلومة لا مستمعًا سلبيًا.
+          </p>
+        </div>
+
+        <div class="how-grid" data-wid="e-240">
+          <!-- Station 1 -->
+          <div class="how-tile-card" data-wid="e-241">
+            <div class="how-step-badge" data-wid="e-242">1</div>
+            <h3 class="how-card-title" data-wid="e-64">الحوار السقراطي</h3>
+            <p class="how-card-desc" data-wid="e-65">
+              سؤال تفكير في كل خطوة من الدرس؛ لا انتقال إلى الخطوة الموالية إلا بعد أن يجيب التلميذ ويتفاعل مع الفكرة المعروضة.
+            </p>
+          </div>
+
+          <!-- Station 2 -->
+          <div class="how-tile-card" data-wid="e-243">
+            <div class="how-step-badge" data-wid="e-244">2</div>
+            <h3 class="how-card-title" data-wid="e-66">الجهد أولاً</h3>
+            <p class="how-card-desc" data-wid="e-67">
+              يبذل التلميذ جهده ويحاول بنفسه أولاً قبل رؤية أي حل جاهز، لأن الجهد الذهني هو الذي يوقظ الانتباه الحقيقي ويثبت الفهم.
+            </p>
+          </div>
+
+          <!-- Station 3 -->
+          <div class="how-tile-card" data-wid="e-245">
+            <div class="how-step-badge" data-wid="e-246">3</div>
+            <h3 class="how-card-title" data-wid="e-68">التلميذ الافتراضي</h3>
+            <p class="how-card-desc" data-wid="e-69">
+              بعد بذل الجهد، يظهر التلميذ الافتراضي ليطبق تقنية فاينمان ويشرح طريقة تفكيره خطوة بخطوة — بغض النظر عن صحة الإجابة، كجزء أساسي لشرح كل مفهوم.
+            </p>
+          </div>
+
+          <!-- Station 4 -->
+          <div class="how-tile-card" data-wid="e-247">
+            <div class="how-step-badge" data-wid="e-248">4</div>
+            <h3 class="how-card-title" data-wid="e-70">تثبيت شامل</h3>
+            <p class="how-card-desc" data-wid="e-71">
+              بعد كل مفهوم: خلاصة مباشرة، ثم أمثلة تطبيقية محلولة بنفس الطريقة، ثم اختبار قصير (Quiz) وتمارين — لكل درس دون استثناء.
+            </p>
+          </div>
+        </div>
+
+        <!-- The three voices, reproduced from the app's own onboarding screen 2
+             (i_akadjihoon_app/lib/onboarding/widgets/dialogue_page.dart, _VoiceKey):
+             same three roles in the same order, same accent on the middle row
+             (the one about the reader's own child), same connecting thread, and
+             the same strings from AppStrings. Numbered, not bulleted, because
+             it is a sequence — an explanation heard before an attempt is a
+             spoiler, so row 3 cannot move above row 2. -->
+        <div class="voices-block">
+          <div class="voices-head">
+            <h3 class="voices-kicker">الدرسُ حوار، لا إملاء</h3>
+            <p class="voices-lead">هذه هي الأصوات الثلاثة في درسٍ واحد.</p>
+          </div>
+
+          <div class="voice-key" id="voice-key">
+            <div class="voice-row" data-beat="0">
+              <span class="voice-badge" aria-hidden="true">
+                <span class="material-symbols-outlined">school</span>
+              </span>
+              <p class="voice-text"><strong>المعلّم</strong><span> يسأل، ثمّ يعقّب ويُسمّي المصطلح.</span></p>
             </div>
 
-            <div class="problem-solution-card">
-                <div class="problem-box">
-                    <h3>المشكلة 2: صعوبة الحفظ والنسيان 💤</h3>
-                    <p>المذاكرة شاقة والنسيان سريع؟ المعلومات تتلاشى بعد وقت قصير، خاصة قبل الامتحانات</p>
-                </div>
-                <div class="solution-box">
-                    <h3>حلنا: ذاكرة قوية تدوم للابد 🧠</h3>
-                    <ul>
-                        <li><span class="list-icon">✔️</span> <strong>المراجعة المتباعدة علميا:</strong> نظامنا الذكي
-                            يعتمد على خوارزمية تكيّفية تقهر منحنى النسيان لـ "ابنغهاوس"، وتحدد افضل اوقات المراجعة</li>
-                        <li><span class="list-icon">✔️</span> <strong>ترسيخ دائم للمعلومات:</strong> نضمن بقاء المفاهيم
-                            الاساسية في ذاكرة ابنك طويلة الامد، ليصبح التذكر سهلا وممتعا</li>
-                        <li><span class="list-icon">✔️</span> <strong>استذكار نشط:</strong> لا مجرد قراءة! ابنك يستدعي
-                            المعلومات بفاعلية، مما يعزز الحفظ والتثبيت</li>
-                    </ul>
-                </div>
+            <div class="voice-thread" aria-hidden="true" data-beat="1"></div>
+
+            <div class="voice-row" data-beat="1">
+              <span class="voice-badge is-accent" aria-hidden="true">
+                <span class="material-symbols-outlined">touch_app</span>
+              </span>
+              <p class="voice-text"><strong class="is-accent">ابنك</strong><span> يجيب قبل أن يرى الحلّ.</span></p>
             </div>
 
-            <div class="problem-solution-card">
-                <div class="problem-box">
-                    <h3>المشكلة 3: الاحباط وفقدان الشغف 🔥</h3>
-                    <p>الفشل المتكرر يقلل من ثقة ابنك بنفسه ويطفئ شعلة حب التعلم لديه</p>
+            <div class="voice-thread" aria-hidden="true" data-beat="2"></div>
+
+            <div class="voice-row" data-beat="2">
+              <span class="voice-badge" aria-hidden="true">
+                <span class="material-symbols-outlined">lightbulb</span>
+              </span>
+              <p class="voice-text"><strong>زميلٌ مثله</strong><span> يفكّر أمامه ويريه كيف وصل.</span></p>
+            </div>
+          </div>
+
+          <!-- The app's caption here («الصوت الثالث لم يذكر قاعدةً…») only makes
+               sense directly under the rendered dialogue, where the third voice
+               can be seen speaking. There is no dialogue on this page, so it
+               pointed at nothing and was dropped rather than reworded into a
+               claim the founder has not approved. -->
+        </div>
+
+        <figure style="margin: 2.4rem auto 0; max-width: 250px; text-align: center;" data-wid="e-249">
+          <img src="assets/img/lesson_three_stage_breakdown.jpg" width="576" height="1280" style="width:100%; height:auto; border-radius: var(--radius); border: 2px solid var(--border); box-shadow: 0 14px 34px rgba(23,50,59,0.14);" alt="واجهة حقيقية من الدرس: تقدم المحطات وتفقد ما فهمته وطبق ما فهمت" loading="lazy" data-wid="e-250" decoding="async">
+          <figcaption style="font-size: .9rem; color: var(--muted); margin-top: .7rem;" data-wid="e-251">شاشة حقيقية من التطبيق: المحطات، النتائج، وخطوة "طبّق ما فهمت"</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- SECTION: "العناصر التفاعلية" (Qualitative Bento) -->
+    <section id="interactive" class="section-wrap elements-section" data-wid="interactive-elements">
+      <div class="container" data-wid="e-336">
+        <div class="section-head" data-wid="e-337">
+          <div class="chip-label accent-chip" data-wid="e-338">
+            <span class="zellij-dot" data-wid="e-72"></span>
+            <span data-wid="e-73">تنوع الأنشطة</span>
+          </div>
+          <h2 class="section-title" data-wid="e-74">تشكيلة واسعة من العناصر التفاعلية</h2>
+          <p class="section-subtitle" data-wid="e-75">
+            أدوات متعددة ومصممة لتناسب طبيعة كل مادة دراسية وتجعل الذهن متيقظًا ومشاركًا باستمرار.
+          </p>
+        </div>
+
+        <div class="elements-bento" data-wid="e-252">
+          <div class="bento-cell" data-wid="e-253">
+            <div class="bento-icon-wrap" data-wid="e-254">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            </div>
+            <h3 class="bento-cell-title" data-wid="e-76">أسئلة الاختيار والتفكير</h3>
+            <p class="bento-cell-desc" data-wid="e-77">خيارات دقيقة تدرب التلميذ على التمييز بين المفاهيم المتقاربة واستبعاد الإجابات غير المنطقية.</p>
+          </div>
+
+          <div class="bento-cell" data-wid="e-255">
+            <div class="bento-icon-wrap" data-wid="e-256">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            </div>
+            <h3 class="bento-cell-title" data-wid="e-78">إكمال الفراغ بالاستنتاج</h3>
+            <p class="bento-cell-desc" data-wid="e-79">وضع الكلمات المفتاحية في مواضعها الصحيحة لاختبار الربط المنطقي بين أجزاء الجملة العلمية.</p>
+          </div>
+
+          <div class="bento-cell" data-wid="e-257">
+            <div class="bento-icon-wrap" data-wid="e-258">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            </div>
+            <h3 class="bento-cell-title" data-wid="e-80">أسئلة التفكير المفتوحة</h3>
+            <p class="bento-cell-desc" data-wid="e-81">دعوة التلميذ للتفكير المستقل قبل الاطلاع على طريقة المعالجة والحل.</p>
+          </div>
+
+          <div class="bento-cell" data-wid="e-259">
+            <div class="bento-icon-wrap" data-wid="e-260">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+            </div>
+            <h3 class="bento-cell-title" data-wid="e-82">مقارنة بالإجابة النموذجية</h3>
+            <p class="bento-cell-desc" data-wid="e-83">مقارنة التلميذ لصياغته الذاتية مع عناصر الإجابة النموذجية لتقييم عمق استيعابه.</p>
+          </div>
+
+          <div class="bento-cell cell-wide" data-wid="e-261">
+            <div class="bento-icon-wrap" data-wid="e-262">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+            <h3 class="bento-cell-title" data-wid="e-84">خطوات متسلسلة مرتبطة برسوم متحركة متزامنة</h3>
+            <p class="bento-cell-desc" data-wid="e-85">توضيح الظواهر العلمية والهندسية خطوة بخطوة حيث يتحرك الرسم التوضيحي بالتزامن المباشر مع تقدم التلميذ في القراءة والإجابة.</p>
+            <div class="mini-interactive-visual" data-wid="e-263">
+              <span data-wid="e-86">تزامن الحركة مع الفهم لحظة بلحظة</span>
+              <span class="mini-pill" data-wid="e-87">رسم تفاعلي</span>
+            </div>
+          </div>
+
+          <div class="bento-cell" data-wid="e-264">
+            <div class="bento-icon-wrap" data-wid="e-265">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+            </div>
+            <h3 class="bento-cell-title" data-wid="e-88">معادلات حقيقية بأسئلة تفاعلية</h3>
+            <p class="bento-cell-desc" data-wid="e-89">التفاعل المباشر مع أطراف المعادلات والرموز الرياضية خطوة بخطوة.</p>
+          </div>
+
+          <div class="bento-cell cell-wide" data-wid="e-266">
+            <div class="bento-icon-wrap" data-wid="e-267">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            </div>
+            <h3 class="bento-cell-title" data-wid="e-90">إجابات مكتوبة وصياغة الأفكار</h3>
+            <p class="bento-cell-desc" data-wid="e-91">تدريب التلميذ على كتابة التبرير العلمي وصياغة البرهان بنفسه، استعدادًا للمتطلبات الكتابية في الامتحانات الرسمية.</p>
+          </div>
+        </div>
+      <figure style="margin: 2.4rem auto 0; max-width: 250px; text-align: center;" data-wid="e-349">
+          <img src="assets/img/subject_math_chapter1_list_1.jpg" width="576" height="1280" style="width:100%; height:auto; border-radius: var(--radius); border: 2px solid var(--border); box-shadow: 0 14px 34px rgba(23,50,59,0.14);" alt="قائمة دروس الرياضيات مع نسب التقدم والإتقان لكل درس" loading="lazy" data-wid="e-347" decoding="async">
+          <figcaption style="font-size: .9rem; color: var(--muted); margin-top: .7rem;" data-wid="e-348">شاشة حقيقية من التطبيق: كل درس بلاطة تُلوَّن حسب تقدمه وإتقانه</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- SECTION: الدافعية ونظام التحفيز (Mint Zone) -->
+    <section id="motivation" class="section-wrap motivation-section" data-wid="motivation">
+      <div class="container motivation-grid" data-wid="e-268">
+        <div data-wid="e-269">
+          <div class="chip-label mint-chip" data-wid="e-270">
+            <span class="zellij-dot" data-wid="e-92"></span>
+            <span data-wid="e-93">نظام دافعية مبني على التعلّم</span>
+          </div>
+          <h2 class="section-title" data-wid="e-94">دافعية مستمرة تقضي على الملل والتسويف</h2>
+          <p class="section-subtitle" style="margin-bottom: 1.5rem;" data-wid="e-95">
+            نظام تحفيزي شبيه بالألعاب يحفز التلميذ على المتابعة المنتظمة، ومصمم ليركز على <strong>الجهد والصواب لا على السرعة</strong> — حتى يتعلم بتركيز وهدوء.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem;" data-wid="e-271">
+            <div class="fact-item" data-wid="e-272">
+              <div class="fact-tile-icon" style="background-color: var(--glaze-mint); color: var(--foreground);" data-wid="e-273"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+              <span class="fact-text" data-wid="e-96"><strong>تتابع الإجابات الصحيحة:</strong> يظهر بصريًا مع اهتزاز خفيف تشجيعي مع كل إتقان حقيقي.</span>
+            </div>
+            <div class="fact-item" data-wid="e-274">
+              <div class="fact-tile-icon" style="background-color: var(--glaze-mint); color: var(--foreground);" data-wid="e-275"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+              <span class="fact-text" data-wid="e-97"><strong>سلسلة أيام المراجعة المتتالية:</strong> بناء عادة دراسية يومية تحافظ على حضور المفاهيم.</span>
+            </div>
+          </div>
+        </div>
+
+
+      <div style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2.5rem;" data-wid="e-355">
+          <figure style="max-width: 220px; margin: 0; text-align: center;" data-wid="e-346">
+            <img src="assets/img/home_session_complete_card_1.jpg" width="576" height="1280" style="width:100%; height:auto; border-radius: var(--radius); border: 2px solid var(--border); box-shadow: 0 14px 34px rgba(23,50,59,0.14);" alt="شاشة جلسة المراجعة: عدد المراجعات المتبقية، الإتقان اليومي، والالتزام المتتالي" loading="lazy" data-wid="e-344" decoding="async">
+            <figcaption style="font-size: .9rem; color: var(--muted); margin-top: .7rem;" data-wid="e-345">شاشة حقيقية: جلسة المراجعة اليومية — الالتزام والإتقان</figcaption>
+          </figure>
+          <figure style="max-width: 220px; margin: 0; text-align: center;" data-wid="e-356">
+            <img src="assets/img/home_session_complete_trophy_card.jpg" width="576" height="1280" style="width:100%; height:auto; border-radius: var(--radius); border: 2px solid var(--border); box-shadow: 0 14px 34px rgba(23,50,59,0.14);" alt="نهاية جلسة دراسية ناجحة: أنهيت جميع مراجعات اليوم بنجاح مع الالتزام والإتقان" loading="lazy" data-wid="e-357" decoding="async">
+            <figcaption style="font-size: .9rem; color: var(--muted); margin-top: .7rem;" data-wid="e-358">شاشة حقيقية: نهاية جلسة نجحت — مكافأة الجهد الصادق</figcaption>
+          </figure>
+      </div></div>
+    </section>
+
+    <!-- SECTION: المتابعة — صفحة "نجاحي" للتلميذ vs تقرير الولي الأسبوعي -->
+    <section id="tracking" class="section-wrap tracking-section" data-wid="tracking-sections">
+      <div class="container" data-wid="e-289">
+        <div class="section-head" data-wid="e-290">
+          <div class="chip-label" data-wid="e-291">
+            <span class="zellij-dot" data-wid="e-103"></span>
+            <span data-wid="e-104">وضوح وشفافية للطرفين</span>
+          </div>
+          <h2 class="section-title" data-wid="e-105">رؤية واضحة للتلميذ… واطمئنان حقيقي للولي</h2>
+          <p class="section-subtitle" data-wid="e-106">
+            لوحتان مستقلتان: واحدة تمنح التلميذ تحكمًا كاملاً في مساره، وأخرى تمنح الولي ملخصًا تشجيعيًا يقرأه على ابنه بلا ضغط.
+          </p>
+        </div>
+
+        <div class="dual-columns" data-wid="e-292">
+          <!-- Student Card: صفحة "نجاحي" -->
+          <div class="dual-card" data-wid="e-293">
+            <div class="dual-card-media" data-wid="e-294">
+              <img src="assets/img/success_page_mastery_effort_card.jpg" width="576" height="1280" loading="lazy" alt="واجهة صفحة نجاحي في التطبيق: نسبة الإتقان، الأيام المتتالية، الدقة، وكيف ثُبتت مفاهيمك" data-wid="e-107" decoding="async">
+            </div>
+            <div class="dual-card-body" data-wid="e-295">
+              <span class="chip-label" style="margin:0;" data-wid="e-108"><span class="zellij-dot" data-wid="e-109"></span><span data-wid="e-110">خاصة بالتلميذ</span></span>
+              <h3 class="dual-title" data-wid="e-111">صفحة "نجاحي"</h3>
+              <p class="dual-desc" data-wid="e-112">تتيح للتلميذ قياس تقدمه الذاتي بكل دقة ومعرفة ما تم تثبيته وما يحتاج إلى مراجعة قريبة:</p>
+              
+              <ul class="dual-items-list">
+                <li class="dual-item" data-wid="e-113">
+                  <svg class="dual-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-wid="e-114">نسبة الإتقان في كل وحدة دراسية</span>
+                </li>
+                <li class="dual-item" data-wid="e-115">
+                  <svg class="dual-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-wid="e-116">سلسلة الأيام المتتالية والمواظبة</span>
+                </li>
+                <li class="dual-item" data-wid="e-117">
+                  <svg class="dual-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-wid="e-118">مستوى الدقة في الإجابات والتفاعل</span>
+                </li>
+                <li class="dual-item" data-wid="e-119">
+                  <svg class="dual-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-wid="e-120">ما ينتظرك من مراجعات خلال الأيام القادمة</span>
+                </li>
+                <li class="dual-item" data-wid="e-121">
+                  <svg class="dual-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-wid="e-122">عدد المحاولات لكل مفهوم حتى الإتقان</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Parent Card: تقرير الولي الأسبوعي -->
+          <div class="dual-card" data-wid="e-296">
+            <div class="dual-card-media" data-wid="e-297">
+              <img src="assets/img/success_page_upcoming_reviews_and_subjects.jpg" width="576" height="1280" loading="lazy" alt="واجهة التقرير الأسبوعي: ما ينتظرك خلال 7 أيام وتقدم كل مادة" data-wid="e-123" decoding="async">
+            </div>
+            <div class="dual-card-body" data-wid="e-298">
+              <span class="chip-label accent-chip" style="margin:0;" data-wid="e-124"><span class="zellij-dot" data-wid="e-125"></span><span data-wid="e-126">خاص بولي الأمر</span></span>
+              <h3 class="dual-title" data-wid="e-127">تقرير الولي الأسبوعي</h3>
+              <p class="dual-desc" data-wid="e-128">تقرير تشجيعي هادئ يُقرأ على الابن بصوت عالٍ دون أن يشعر بأنه تحت المراقبة أو المقارنة:</p>
+              
+              <ul class="dual-items-list">
+                <li class="dual-item parent-item" data-wid="e-129">
+                  <svg class="dual-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-wid="e-130">أيام الدراسة الفعلية خلال الأسبوع</span>
+                </li>
+                <li class="dual-item parent-item" data-wid="e-131">
+                  <svg class="dual-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-wid="e-132">المفاهيم العلمية المثبتة بنجاح</span>
+                </li>
+                <li class="dual-item parent-item" data-wid="e-133">
+                  <svg class="dual-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-wid="e-134">بلا وقت جلوس أمام الشاشة وبلا ضغط زمني</span>
+                </li>
+                <li class="dual-item parent-item" data-wid="e-135">
+                  <svg class="dual-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-wid="e-136">بلا مقارنة بأي تلاميذ آخرين وبلا إظهار تراجع</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: الدفع بلا مفاجآت -->
+    <section class="section-wrap payment-section" data-wid="pricing-structure">
+      <div class="container" data-wid="e-299">
+        <div class="section-head" data-wid="e-300">
+          <div class="chip-label" data-wid="e-301">
+            <span class="zellij-dot" data-wid="e-137"></span>
+            <span data-wid="e-138">وضوح ومرونة تامة</span>
+          </div>
+          <h2 class="section-title" data-wid="e-139">دفع مرن بلا اشتراكات سنوية إجبارية</h2>
+          <p class="section-subtitle" data-wid="e-140">
+            حرية تامة للأولياء في اختيار ما يحتاجه التلميذ تحديدًا عبر محفظة إلكترونية شفافة داخل التطبيق.
+          </p>
+        </div>
+
+        <div class="payment-grid" data-wid="e-302">
+          <div class="pay-card" data-wid="e-303">
+            <div class="pay-badge-icon" data-wid="e-304">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            </div>
+            <h3 class="pay-title" data-wid="e-141">محفظة مرنة داخل التطبيق</h3>
+            <p class="pay-desc" data-wid="e-142">الشراء يتم بسهولة عبر رصيد المحفظة باختيار مادة كاملة أو وحدة واحدة حسب حاجة التلميذ المباشرة.</p>
+          </div>
+
+          <div class="pay-card" data-wid="e-305">
+            <div class="pay-badge-icon" data-wid="e-306">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <h3 class="pay-title" data-wid="e-143">خصم عادل وتلقائي</h3>
+            <p class="pay-desc" data-wid="e-144">عند إتمام شراء مادة سبق وأن اقتنيت وحدة منها، يُخصم ما دفعته سابقًا تلقائيًا دون تكرار للدفع.</p>
+          </div>
+
+          <div class="pay-card" data-wid="e-307">
+            <div class="pay-badge-icon" data-wid="e-308">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <h3 class="pay-title" data-wid="e-145">ملكية لعام دراسي كامل</h3>
+            <p class="pay-desc" data-wid="e-146">الوحدة أو المادة المشتراة تظل متاحة للتلميذ طوال العام الدراسي للمراجعة والتدرب متى شاء.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: البنية التقنية -->
+    <section class="section-wrap tech-section" data-wid="tech-features">
+      <div class="container" data-wid="e-309">
+        <div class="tech-bar-grid" data-wid="e-310">
+          <div class="tech-pill-box" data-wid="e-311">
+            <div class="tech-icon-square" data-wid="e-312">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l22 22"></path><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path><path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+            </div>
+            <div class="tech-content" data-wid="e-313">
+              <h4 data-wid="e-147">يعمل بالكامل دون إنترنت</h4>
+              <p data-wid="e-148">بعد تحميل المادة، يستطيع التلميذ المذاكرة والتفاعل وحل التمارين في أي وقت دون الحاجة لاتصال مستمر.</p>
+            </div>
+          </div>
+
+          <div class="tech-pill-box" data-wid="e-314">
+            <div class="tech-icon-square" data-wid="e-315">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <div class="tech-content" data-wid="e-316">
+              <h4 data-wid="e-149">أكثر من ابن بحساب واحد</h4>
+              <p data-wid="e-150">مسارات تعليمية ومحافظ منفصلة لكل ابن في نفس الحساب العائلي لتنظيم تقدم كل تلميذ باستقلالية.</p>
+            </div>
+          </div>
+
+          <div class="tech-pill-box" data-wid="e-317">
+            <div class="tech-icon-square" data-wid="e-318">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+            </div>
+            <div class="tech-content" data-wid="e-319">
+              <h4 data-wid="e-151">حفظ سحابي مستمر</h4>
+              <p data-wid="e-152">يُحفظ التقدم بأمان ويُسترجع فورًا عند تبديل الهاتف أو اللوحة الإلكترونية أو جهاز الكمبيوتر.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: الختام وعرض الوحدة المجانية (The Conversion Anchor) -->
+    <section id="offer" class="section-wrap offer-section" data-wid="offer-free-unit">
+      <div class="container" data-wid="e-320">
+        <div class="offer-card" data-wid="e-321">
+          <!-- min(280px, 100%): a bare minmax(280px, 1fr) forces a 280px column
+               even when the card has less room than that, which pushed the
+               heading and copy past the right edge below ~384px wide. -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 2.5rem; align-items: center;" data-wid="e-328">
+            <div data-wid="e-329">
+              <div class="chip-label accent-chip" style="margin-bottom: 1rem;" data-wid="e-322">
+                <span class="zellij-dot" data-wid="e-153"></span>
+                <span data-wid="e-154">جرّب التجربة الحقيقية الآن</span>
+              </div>
+
+              <h2 class="offer-title" data-wid="e-155">الوحدة الأولى كاملة مجانًا لكل مادة</h2>
+              
+              <p class="offer-lede" data-wid="e-156">
+                دون استثناء ودون الحاجة لإدخال أي بطاقة دفع. نفس التجربة الكاملة (درس تفاعلي + اختبار قصير + تمارين + مراجعة مثبتة)، وليست نسخة منقوصة.
+              </p>
+
+              <div class="offer-checklist" data-wid="e-323">
+                <div class="offer-check-item" data-wid="e-324">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-wid="e-157">تشمل جميع المواد الدراسية</span>
                 </div>
-                <div class="solution-box">
-                    <h3>حلنا: استعادة الشغف والثقة 🌟</h3>
-                    <ul>
-                        <li><span class="list-icon">✔️</span> <strong>ربط التعلم بالواقع:</strong> كل درس يبدأ بمشكلة
-                            حياتية يحلها ابنك بنفسه، فيرى قيمة ما يتعلمه</li>
-                        <li><span class="list-icon">✔️</span> <strong>انجاز فوري وملهم:</strong> النجاح المتكرر في حل
-                            المشاكل يولد شعورا عميقا بالكفاءة الذاتية والثقة</li>
-                        <li><span class="list-icon">✔️</span> <strong>تعلم ذو معنى:</strong> يحول العلم من مجرد واجب الى
-                            اداة قوية لحل مشكلات العالم الحقيقي</li>
-                    </ul>
+                <div class="offer-check-item" data-wid="e-325">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-wid="e-158">نفس آلية التلميذ الافتراضي</span>
                 </div>
-            </div>
-
-            <div class="problem-solution-card">
-                <div class="problem-box">
-                    <h3>المشكلة 4: صعوبة المتابعة للاهل 👨‍👩‍👧‍👦</h3>
-                    <p>انشغالك يمنعك من متابعة تقدم ابنك عن كثب، وتتمنى رؤية واضحة لادائه</p>
+                <div class="offer-check-item" data-wid="e-326">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-wid="e-159">متاحة فور التحميل دون قيود</span>
                 </div>
-                <div class="solution-box">
-                    <h3>حلنا: راحة بال لكم ومتابعة ذكية 📊</h3>
-                    <ul>
-                        <li><span class="list-icon">✔️</span> <strong>تعلم مستقل لابنك:</strong> ابنك يتقدم في دروسه
-                            باستقلالية تامة دون حاجتك لدعم مباشر</li>
-                        <li><span class="list-icon">✔️</span> <strong>تقارير اداء شاملة (KPIs):</strong> تتلقى احصاءات
-                            واضحة ومبسطة عن نقاط قوة وضعف ابنك</li>
-                        <li><span class="list-icon">✔️</span> <strong>قرارات تعليمية بذكاء:</strong> تمكنك من توجيه
-                            الدعم الفعال والمخصص باقل جهد، لضمان استمرارية تفوقه</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- App Features Carousel -->
-        <!-- New Section: App Features Carousel -->
-        <section class="app-carousel-section">
-            <h2>رحلة مصوّرة داخل تطبيق ناجحون أكاديمي: هكذا نُحدث الفرق! ✨</h2>
-            <div class="carousel-container">
-                <div class="carousel-wrapper"> <!-- Added a wrapper for simpler JS/CSS -->
-                    <div class="carousel-slide active-slide">
-                        <img src="assets/images/image1.png" alt="شاشة التطبيق: حوار سقراطي">
-                        <p>حوارات تفاعلية تعمق الفهم وتثير التفكير النقدي</p>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="assets/images/image1.png" alt="شاشة التطبيق: بطاقات مراجعة متباعدة">
-                        <p>بطاقات ذكية للمراجعة المتباعدة تضمن ترسيخ المعلومات</p>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="assets/images/image1.png" alt="شاشة التطبيق: حل مشكلة واقعية">
-                        <p>حلول لمشاكل واقعية تجعل التعلم ذا معنى وممتعا</p>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="assets/images/image1.png" alt="شاشة التطبيق: لوحة تحكم مؤشرات الاداء">
-                        <p>تقارير اداء شاملة وواضحة للاهل لمتابعة التقدم بسهولة</p>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="assets/images/image1.png" alt="شاشة التطبيق: درس تفاعلي">
-                        <p>دروس تفاعلية غنية بالرسوم والصوت والفيديوهات لتعلم مشوق</p>
-                    </div>
-                </div>
-                <button class="carousel-button prev">❮</button>
-                <button class="carousel-button next">❯</button>
-                <div class="carousel-dots"></div> <!-- New: Navigation dots -->
-            </div>
-        </section>
-
-        <!-- <section class="testimonials-section">
-            <h2>ماذا يقول اولياء الامور عن "ناجحون اكاديمي"؟ 💖</h2>
-            <div class="testimonial-card">
-                <p>"ابنتي كانت تكره الرياضيات، واليوم اصبحت تحبها! شكرا "ناجحون اكاديمي" على هذا التحول الرائع. الدرجات
-                    تحسنت وثقتها ارتفعت بشكل لا يصدق!"</p>
-                <p class="author">- ام محمد</p>
-            </div>
-            <div class="testimonial-card">
-                <p>"لم اكن اتخيل ان ابني يستطيع التعلم بمثل هذه الاستقلالية. تقارير الاداء اليومية تمنحني راحة بال تامة.
-                    منتج رائع!"</p>
-                <p class="author">- الاستاذ احمد</p>
-            </div>
-            <a href="#" class="cta-button secondary-cta">اكتشف المزيد من قصص النجاح</a>
-        </section> -->
-
-        <section id="download-section" class="cta-section download-cta-section">
-            <h2>امنح ابنك فرصة التفوق الحقيقي مع "ناجحون اكاديمي"! 😍</h2>
-            <p class="cta-subtitle">لا تنتظر اكثر! مستقبل ابنك الدراسي بين يديك</p>
-
-            <a href="https://play.google.com/store/apps/details?id=com.keydevolopper78.akadjihhon"
-                class="cta-button primary-cta">جرب التطبيق مجانا اليوم!</a>
-            <p class="cta-offer-text">استمتع بتجربة مجانية بالكامل</p>
-            <p class="cta-guarantee">لن تدفع شيئا حتى تتأكد من جودة منتجنا وفعاليته بنفسك</p>
-
-            <div class="app-stores-hero">
-                <a href="https://play.google.com/store/apps/details?id=com.keydevolopper78.akadjihhon" target="_blank">
-                    <img src="assets/images/google_play_store.png" alt="تنزيل من متجر جوجل بلاي">
-                </a>
-                <a href="https://apps.microsoft.com/store/detail/9NW0GLT1NDMX?cid=DevShareMTGPCS" target="_blank">
-                    <img src="assets/images/windows_play_store.png" alt="تنزيل من متجر ويندوز">
-                </a>
+              </div>
             </div>
 
+            <figure style="margin: 0; text-align: center;" data-wid="e-330">
+              <img src="assets/img/subject_physics_chapter1_free_lesson_1.jpg" width="576" height="1280" style="width: 100%; max-width: 230px; height: auto; border-radius: var(--radius); border: 2px solid var(--border); box-shadow: 0 16px 38px rgba(23,50,59,0.16);" alt="قائمة دروس الوحدة الأولى المجانية لمادة العلوم الفيزيائية مع تقدم كل درس" loading="lazy" data-wid="e-331" decoding="async">
+              <figcaption style="font-size: .9rem; color: var(--muted); margin-top: .7rem;" data-wid="e-332">الوحدة الأولى مجانًا — شاشة حقيقية من التطبيق</figcaption>
+            </figure>
+          </div>
+
+          <div class="cta-cluster" style="justify-content: center; margin-bottom: 0; margin-top: 2.2rem;" data-wid="e-327">
+            <button type="button" class="btn-terracotta open-download-modal" style="font-size: 1.15rem; padding: 1rem 2.2rem;" data-wid="e-160">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span data-wid="e-161">جرّب الوحدة الأولى مجانًا</span>
+            </button>
+
+            <a href="https://play.google.com/store/apps/details?id=com.keydevolopper78.akadjihhon" class="btn-store store-link" data-store="google-play" data-wid="e-162" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path fill="#34A853" d="M3.4 2.1 13.1 12l3.9-2.2z"></path><path fill="#EA4335" d="M3.4 21.9 13.1 12l3.9 2.2z"></path><path fill="#FBBC04" d="M17 9.8 21.6 12 17 14.2 13.1 12z"></path><path fill="#4285F4" d="M3.4 2.1v19.8L13.1 12z"></path></svg>
+              <span data-wid="e-163">Google Play</span>
+            </a>
+
+            <a href="https://apps.microsoft.com/store/detail/9NW0GLT1NDMX?cid=DevShareMTGPCS" class="btn-store store-link" data-store="microsoft-store" data-wid="e-164" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.902-1.799"></path></svg>
+              <span data-wid="e-165">Microsoft Store (ويندوز)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" data-wid="site-footer">
+    <div class="container" data-wid="e-339">
+      <div class="footer-top" data-wid="e-340">
+        <div data-wid="e-341">
+          <a href="#hero" class="footer-brand-wrap" data-brand="footer" aria-label="ناجحون أكاديمي" data-wid="e-166">
+            ناجحون <span data-wid="e-167">أكاديمي</span>
+          </a>
+          <p class="footer-desc" data-wid="e-168">
+            منصة تعليمية تفاعلية جزائرية تعالج التعليم السلبي وتضمن استيعاب المفاهيم بعمق حتى يوم الامتحان.
+          </p>
+        </div>
+
+        <div data-wid="e-342">
+          <h4 class="footer-col-title" data-wid="e-169">المنهجية التعليمية</h4>
+          <ul class="footer-links">
+            <li data-wid="e-170"><a href="#how" class="footer-link" data-wid="e-171">الحوار السقراطي</a></li>
+            <li data-wid="e-172"><a href="#how" class="footer-link" data-wid="e-173">تقنية فاينمان والتلميذ الافتراضي</a></li>
+            <li data-wid="e-174"><a href="#interactive" class="footer-link" data-wid="e-175">العناصر التفاعلية المتنوعة</a></li>
+            <li data-wid="e-176"><a href="#motivation" class="footer-link" data-wid="e-177">نظام الدافعية والمواظبة</a></li>
+          </ul>
+        </div>
+
+        <div data-wid="e-343">
+          <h4 class="footer-col-title" data-wid="e-178">التحميل والتطبيق</h4>
+          <ul class="footer-links">
+            <li data-wid="e-179"><a href="https://play.google.com/store/apps/details?id=com.keydevolopper78.akadjihhon" class="footer-link store-link" data-store="google-play" data-wid="e-180" target="_blank" rel="noopener">تطبيق أندرويد (Google Play)</a></li>
+            <li data-wid="e-181"><a href="https://apps.microsoft.com/store/detail/9NW0GLT1NDMX?cid=DevShareMTGPCS" class="footer-link store-link" data-store="microsoft-store" data-wid="e-182" target="_blank" rel="noopener">برنامج ويندوز (Microsoft Store)</a></li>
+            <li data-wid="e-183"><a href="#tracking" class="footer-link" data-wid="e-184">تقرير الولي الأسبوعي</a></li>
+            <li data-wid="e-185"><a href="#offer" class="footer-link" data-wid="e-186">الوحدة الأولى المجانية</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar" data-wid="e-333">
+        <span data-wid="e-187">© ناجحون أكاديمي — جميع الحقوق محفوظة للتلاميذ في الجزائر.</span>
+        <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem;">
+          <a href="/privacy-policy.html" class="footer-link">سياسة الخصوصية</a>
+          <span style="opacity: 0.5;">·</span>
+          <a href="/terms-of-service.html" class="footer-link">شروط الاستخدام</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Interactive Download Modal for quick start -->
+  <!-- Live lesson modal. Full-screen on purpose: the lesson engine does its own
+       internal scrolling, and giving it the whole screen means there is no page
+       scrolling behind it competing for the same touch. -->
+  <div class="live-modal" id="live-modal" role="dialog" aria-modal="true" aria-label="درس تفاعلي حقيقي">
+    <div class="live-phone">
+      <div class="live-bar">
+        <span id="live-lesson-title">درس تفاعلي حقيقي</span>
+        <button type="button" class="live-close" id="live-close" aria-label="إغلاق">✕</button>
+      </div>
+      <div class="live-body">
+        <div class="live-loader" id="live-loader">
+          <div class="live-spinner"></div>
+          <div class="live-loader-title">جاري تجهيز معاينة الدرس…</div>
+          <div class="live-loader-notice" style="max-width: 360px; margin: 1.2rem auto 0; padding: 1rem 1.2rem; background: var(--secondary); border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.88rem; line-height: 1.6; color: var(--foreground); text-align: right;">
+            <div style="font-weight: 700; color: var(--primary); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem;">
+              <span>💡</span>
+              <span>تنبيه للمعاينة:</span>
+            </div>
+            <div>هذه معاينة سريعة عبر المتصفح. <strong>التجربة داخل التطبيق الأصلي (أندرويد وويندوز) أسرع بكثير وفائقة السلاسة والاستجابة</strong>، والدروس كاملة وموسعة مع المراجعة الذكية والعمل دون إنترنت.</div>
+          </div>
+          <div class="live-loader-hint" id="live-timer" style="margin-top: 1rem; font-size: 0.82rem; color: var(--muted);">جاري تهيئة المحرك والخطوط العربية…</div>
+        </div>
+        <div id="demo-host"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="downloadModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" id="closeModalBtn" aria-label="إغلاق" data-wid="e-189">×</button>
+      
+      <div class="chip-label accent-chip" style="margin-bottom: 0.5rem;">
+        <span class="zellij-dot" data-wid="e-190"></span>
+        <span data-wid="e-191">تحميل التطبيق وتجربة الوحدة الأولى</span>
+      </div>
+
+      <h3 id="modalTitle" style="font-size: 1.45rem; margin-bottom: 0.75rem; color: var(--foreground);" data-wid="e-192">
+        ابدأ الآن مجانًا على جهازك
+      </h3>
+      
+      <p style="font-size: 0.92rem; color: var(--ink-75); line-height: 1.6; margin-bottom: 1.5rem;" data-wid="e-193">
+        حمّل التطبيق واستمتع بالوحدة الأولى كاملة لكل مادة دون الحاجة لأي بطاقة دفع أو اشتراك مسبق.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+        <a href="https://play.google.com/store/apps/details?id=com.keydevolopper78.akadjihhon" class="btn-store store-link" data-store="google-play" style="justify-content: center; padding: 1rem; background-color: var(--secondary);" data-wid="e-194" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" style="width:24px;height:24px;"><path fill="#34A853" d="M3.4 2.1 13.1 12l3.9-2.2z"></path><path fill="#EA4335" d="M3.4 21.9 13.1 12l3.9 2.2z"></path><path fill="#FBBC04" d="M17 9.8 21.6 12 17 14.2 13.1 12z"></path><path fill="#4285F4" d="M3.4 2.1v19.8L13.1 12z"></path></svg>
+          <span style="font-size: 1rem; font-weight: 700;" data-wid="e-195">تحميل للأندرويد عبر Google Play</span>
+        </a>
+
+        <a href="https://apps.microsoft.com/store/detail/9NW0GLT1NDMX?cid=DevShareMTGPCS" class="btn-store store-link" data-store="microsoft-store" style="justify-content: center; padding: 1rem; background-color: var(--secondary);" data-wid="e-196" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:24px;height:24px;"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.902-1.799"></path></svg>
+          <span style="font-size: 1rem; font-weight: 700;" data-wid="e-197">تحميل للكمبيوتر عبر Microsoft Store</span>
+        </a>
+      </div>
+
+      <div style="margin-top: 1.25rem; font-size: 0.8rem; color: var(--muted); text-align: center;">
+        يعمل بالكامل دون إنترنت بعد التحميل • متوافق مع هواتف ولوحات أندرويد وأجهزة ويندوز
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Choreography & Interactions -->
+  <script src="assets/js/main.js" defer></script>
 
 
-
-            <p class="final-cta-text">ابدأ رحلة التفوق الان، وشاهد الفرق الذي سيصنع مستقبل ابنائكم! 🎓✨</p>
-        </section>
-
-        <!-- <section class="contact-form-section">
-            <h2>هل لديك اسئلة؟ تواصل معنا!</h2>
-            <form action="https://formspree.io/f/yourformid" method="POST" class="contact-form">
-                <input type="text" name="name" placeholder="الاسم الكامل" required>
-                <input type="email" name="email" placeholder="بريدك الالكتروني" required>
-                <input type="tel" name="phone" placeholder="رقم الهاتف (اختياري)">
-                <textarea name="message" placeholder="رسالتك (اختياري)"></textarea>
-                <button type="submit" class="cta-button">ارسال الرسالة</button>
-            </form>
-            <p class="form-note"><sup>*</sup> لن نشارك بياناتك مع اي طرف ثالث. ونسعى للرد على جميع استفساراتكم باسرع وقت
-                ممكن</p>
-        </section> -->
-    </main>
-
-    <footer>
-        <p>&copy; 2025 ناجحون اكاديمي. جميع الحقوق محفوظة</p>
-        <p><a href="privacy-policy.html">سياسة الخصوصية</a> | <a href="terms-of-service.html">شروط الاستخدام</a></p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-
-</html>
+</body></html>
