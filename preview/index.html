@@ -144,6 +144,16 @@
             </a>
           </div>
 
+          <div class="hero-quick-demos" style="margin-top: 1.1rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <span style="font-size: 0.88rem; color: var(--muted); font-weight: 600;">⚡ أو عاين محرك الدروس مباشرة:</span>
+            <a href="#demo" class="hero-demo-chip" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.85rem; background: var(--secondary); border: 1px solid var(--border); border-radius: var(--radius-full); font-size: 0.85rem; color: var(--foreground); text-decoration: none; font-weight: 600;">
+              <span>فيزياء (الحركة)</span>
+              <span>•</span>
+              <span>رياضيات (القيمة المطلقة)</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+          </div>
+
           <!-- Hero Fold Facts Bar -->
           <div class="hero-facts-bar" data-wid="e-204">
             <div class="fact-item" data-wid="e-205">
@@ -205,27 +215,61 @@
     </section>
 
 
-    <!-- SHOWPIECE: "جرّب سؤالاً واحداً" (Physics Interactive Experience) -->
+    <!-- SHOWPIECE: "جرّب درسين تفاعليين حقيقيين" (Physics & Math Interactive Experiences) -->
     <section id="demo" class="section-wrap demo-section" data-wid="demo-section">
       <div class="container" data-wid="e-335">
         <div class="section-head" data-wid="e-218">
           <div class="chip-label accent-chip" data-wid="e-219">
             <span class="zellij-dot" data-wid="e-37"></span>
-            <span data-wid="e-38">المعاينة الأولى • علوم فيزيائية</span>
+            <span data-wid="e-38">تجربة تفاعلية حية في المتصفح</span>
           </div>
-          <h2 class="section-title" data-wid="e-39">جرّب بنفسك: كيف يتحول درس الفيزياء إلى حوار وتجربة حركية؟</h2>
+          <h2 class="section-title" data-wid="e-39">جرّب بنفسك الآن: كيف يتحول الدرس إلى حوار وتفاعل حقيقي؟</h2>
           <p class="section-subtitle" data-wid="e-40">
-            ليس مقطع فيديو تشاهده، بل <strong>محرّك تفاعلي حقيقي</strong>: خطوات متسلسلة ورسوم متحركة تكتشف بها مفهوم نسبيّة الحركة واختيار المرجع لحظة بلحظة.
+            ليس مقطع فيديو تشاهده، بل <strong>محرّك الدروس الحقيقي</strong> الذي يتفاعل به التلاميذ — يعمل هنا مباشرة في متصفحك دون تحميل: خطوات متسلسلة ورسوم متحركة وتفكير ذاتي قبل رؤية الحل.
           </p>
+        </div>
 
-          <div class="live-demo-launch">
-            <p class="live-demo-note">
-              شاهد الموقف الحركي وأجب بنفسك، وسترى كيف يقود التفاعل نحو استنتاج القانون العلمي دون تلقين.
+        <div class="demos-duo-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 960px; margin: 2rem auto 0;">
+          <!-- Card 1: Physics -->
+          <div class="lesson-demo-card" style="margin-top: 0;">
+            <div class="lesson-demo-head">
+              <div class="chip-label accent-chip" style="margin: 0;">
+                <span class="zellij-dot"></span>
+                <span>علوم فيزيائية • أولى ثانوي</span>
+              </div>
+              <span style="font-size: 0.85rem; color: var(--muted); font-weight: 500;">الميكانيك والحركة</span>
+            </div>
+            <h3 class="lesson-demo-title">نسبية الحركة والسكون واختيار المرجع</h3>
+            <p class="lesson-demo-desc">
+              شاهد الموقف الحركي وتجربة القطار والمراقبين بالرسوم المتحركة التفاعلية، وأجب بنفسك خطوة بخطوة لتستنتج القانون الفيزيائي لاختيار المرجع دون أي تلقين سطحي.
             </p>
-            <button type="button" class="nav-cta-btn open-live-demo" data-demo="m0_0021" data-title="درس تفاعلي: نسبية الحركة والسكون (علوم فيزيائية)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-              <span>جرّب درس الحركة والسكون (فيزياء)</span>
-            </button>
+            <div class="lesson-demo-footer">
+              <button type="button" class="nav-cta-btn open-live-demo" data-demo="m0_0021" data-title="درس تفاعلي: نسبية الحركة والسكون (علوم فيزيائية)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>جرّب درس الفيزياء (الحركة والسكون)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Math Absolute Value -->
+          <div class="lesson-demo-card" style="margin-top: 0;">
+            <div class="lesson-demo-head">
+              <div class="chip-label mint-chip" style="margin: 0;">
+                <span class="zellij-dot"></span>
+                <span>رياضيات • أولى ثانوي</span>
+              </div>
+              <span style="font-size: 0.85rem; color: var(--muted); font-weight: 500;">الترتيب والقيمة المطلقة</span>
+            </div>
+            <h3 class="lesson-demo-title">القيمة المطلقة كمسافة هندسية وفخ الإشارة</h3>
+            <p class="lesson-demo-desc">
+              تجاوز الفخ الكلاسيكي في اختبارات الفصل الأول! كيف ينتقل التلميذ من الحفظ الشكلي إلى الفهم الهندسي للمسافة على المستقيم العددي مع تجربة تفاعلية لسحب النقطة واستنتاج القاعدة.
+            </p>
+            <div class="lesson-demo-footer">
+              <button type="button" class="nav-cta-btn open-live-demo" data-demo="m0_0011" data-title="درس تفاعلي: القيمة المطلقة والمسافة (رياضيات)" style="background-color: var(--secondary); color: var(--foreground); border-color: var(--border);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>جرّب درس الرياضيات (القيمة المطلقة)</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -335,27 +379,6 @@
           <img src="assets/img/lesson_three_stage_breakdown.jpg" width="576" height="1280" style="width:100%; height:auto; border-radius: var(--radius); border: 2px solid var(--border); box-shadow: 0 14px 34px rgba(23,50,59,0.14);" alt="واجهة حقيقية من الدرس: تقدم المحطات وتفقد ما فهمته وطبق ما فهمت" loading="lazy" data-wid="e-250" decoding="async">
           <figcaption style="font-size: .9rem; color: var(--muted); margin-top: .7rem;" data-wid="e-251">شاشة حقيقية من التطبيق: المحطات، النتائج، وخطوة "طبّق ما فهمت"</figcaption>
         </figure>
-
-        <!-- Dedicated Math Preview Card 1: Absolute Value -->
-        <div class="lesson-demo-card" data-wid="demo-card-math-abs" style="max-width: 720px; margin: 2.5rem auto 0;">
-          <div class="lesson-demo-head">
-            <div class="chip-label mint-chip" style="margin: 0;">
-              <span class="zellij-dot"></span>
-              <span>المعاينة الثانية • رياضيات</span>
-            </div>
-            <span style="font-size: 0.85rem; color: var(--muted); font-weight: 500;">الترتيب والقيمة المطلقة • أولى ثانوي</span>
-          </div>
-          <h3 class="lesson-demo-title">القيمة المطلقة كمسافة هندسية وفخ تبسيط الجذور</h3>
-          <p class="lesson-demo-desc">
-            تجاوز الفخ الشائع في اختبارات الفصل الأول! كيف ينتقل التلميذ من الحفظ السطحي ("نزع الإشارة السالبة") إلى الفهم الهندسي للمسافة على المستقيم العددي، وتطبيق القاعدة الدقيقة لتبسيط العبارة الخادعة دائمًا دون أي ارتباك.
-          </p>
-          <div class="lesson-demo-footer">
-            <button type="button" class="nav-cta-btn open-live-demo" data-demo="m0_0012" data-title="درس تفاعلي: القيمة المطلقة والمسافة (رياضيات)" style="background-color: var(--secondary); color: var(--foreground); border-color: var(--border);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-              <span>جرّب درس القيمة المطلقة والمسافة</span>
-            </button>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -438,27 +461,6 @@
           <img src="assets/img/subject_math_chapter1_list_1.jpg" width="576" height="1280" style="width:100%; height:auto; border-radius: var(--radius); border: 2px solid var(--border); box-shadow: 0 14px 34px rgba(23,50,59,0.14);" alt="قائمة دروس الرياضيات مع نسب التقدم والإتقان لكل درس" loading="lazy" data-wid="e-347" decoding="async">
           <figcaption style="font-size: .9rem; color: var(--muted); margin-top: .7rem;" data-wid="e-348">شاشة حقيقية من التطبيق: كل درس بلاطة تُلوَّن حسب تقدمه وإتقانه</figcaption>
         </figure>
-
-        <!-- Dedicated Math Preview Card 2: Rational Numbers & Period -->
-        <div class="lesson-demo-card" data-wid="demo-card-math-rational" style="max-width: 720px; margin: 2.5rem auto 0;">
-          <div class="lesson-demo-head">
-            <div class="chip-label" style="margin: 0;">
-              <span class="zellij-dot"></span>
-              <span>المعاينة الثالثة • رياضيات</span>
-            </div>
-            <span style="font-size: 0.85rem; color: var(--muted); font-weight: 500;">الأعداد والحساب • أولى ثانوي</span>
-          </div>
-          <h3 class="lesson-demo-title">هل الكسر 1/3 عدد عشري؟ كشف فخ الآلة الحاسبة</h3>
-          <p class="lesson-demo-desc">
-            السؤال الذي يخدع أغلب التلاميذ عند الاعتماد الأعمى على شاشة الآلة الحاسبة (0.333...). اختبر كيف يقود الحوار السقراطي وصوت الزميل لاستنتاج شرط الفاصلة المنتهية، ومفهوم "الدَّوْر" (Période)، ومجموعة الأعداد الناطقة ℚ.
-          </p>
-          <div class="lesson-demo-footer">
-            <button type="button" class="nav-cta-btn open-live-demo" data-demo="m0_0011" data-title="درس تفاعلي: مجموعة الأعداد الناطقة (رياضيات)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-              <span>جرّب درس الأعداد الناطقة والدور</span>
-            </button>
-          </div>
-        </div>
       </div>
     </section>
 
