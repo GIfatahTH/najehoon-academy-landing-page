@@ -192,10 +192,11 @@ document.addEventListener("DOMContentLoaded", function() {
       liveHost.setAttribute("data-demo", demoId);
     }
 
-    // Always notify Flutter of the requested demo
-    window.dispatchEvent(new CustomEvent("site:switch_demo", { detail: demoId }));
-
-    if (liveModal && liveModal.classList.contains("open")) return;
+    // If modal is already open, switch demo immediately
+    if (liveModal && liveModal.classList.contains("open")) {
+      window.dispatchEvent(new CustomEvent("site:switch_demo", { detail: demoId }));
+      return;
+    }
 
     lastFocusedElement = document.activeElement;
 
