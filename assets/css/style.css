@@ -1209,6 +1209,19 @@
       .nav-chips { display: none; }
     }
     @media (max-width: 767px) {
+      .brand-sub {
+        display: none;
+      }
+      .nav-inner {
+        gap: 0.5rem;
+      }
+      .brand-wrap {
+        font-size: 1.18rem;
+      }
+      .nav-cta-btn {
+        padding: 0.42rem 0.65rem;
+        font-size: 0.78rem;
+      }
       /* Phone above the text once there is no room for two columns. It takes
          the full card width on purpose: a 576px-wide screenshot shrunk to a
          200px thumbnail is unreadable, which defeats the point of showing a
