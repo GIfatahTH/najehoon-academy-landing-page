@@ -34,20 +34,40 @@
   fbq('init', '802910105652550');
   fbq('track', 'PageView');
 
-  // Track key actions: Store Download Clicks & Interactive Demo Launches
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.store-link').forEach(function(el) {
-      el.addEventListener('click', function() {
-        var store = this.getAttribute('data-store') || 'unknown';
-        fbq('track', 'Lead', { content_name: store, content_category: 'app_download' });
-        fbq('trackCustom', 'StoreDownloadClick', { store: store });
-      });
-    });
-    document.querySelectorAll('.launch-live-btn, #open-live-btn, .open-download-modal').forEach(function(el) {
-      el.addEventListener('click', function() {
-        fbq('trackCustom', 'DemoOrModalTriggered');
-      });
-    });
+  // Meta Pixel Event Mapping (Exact alignment with Wandit advertising strategy)
+  document.addEventListener('site:lead', function(e) {
+    if (!e || !e.detail || typeof fbq !== 'function') return;
+    var action = e.detail.action;
+    switch (action) {
+      case 'demo_ready':
+        // المحرك اشتغل والدرس جاهز للتفاعل (الحدث الأهم كتحويل Lead)
+        fbq('track', 'Lead', {
+          content_name: e.detail.demo || 'interactive_lesson',
+          content_category: 'demo_ready'
+        });
+        break;
+      case 'store_download_click':
+        // النقر على رابط تحميل التطبيق من المتاجر
+        fbq('track', 'InitiateCheckout', {
+          content_name: e.detail.store || 'store_download',
+          content_category: 'app_download'
+        });
+        break;
+      case 'demo_load_clicked':
+        // النقر لفتح الدرس التفاعلي الحي في المتصفح
+        fbq('track', 'ViewContent', {
+          content_name: e.detail.demo || 'live_lesson',
+          content_category: 'interactive_demo'
+        });
+        break;
+      case 'try_free_unit_click':
+        // النقر على زر تجربة الوحدة الأولى مجاناً
+        fbq('track', 'Contact', {
+          content_name: e.detail.offer || 'free_unit_modal',
+          content_category: 'cta_click'
+        });
+        break;
+    }
   });
   </script>
   <noscript><img height="1" width="1" style="display:none"
